@@ -1,0 +1,442 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url(https://i.imgur.com/HrGlL6O.png);
+    background-size: 1150px;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#gamingTable {
+    position: fixed;
+}
+
+p {
+    margin: 0;
+}
+
+#playerTurnButton img{
+    position: fixed;
+    width: 47px;
+    height: 47px;
+    top: 145px;
+    left: 250px;
+}
+
+#computerTurnButton {
+    position: fixed;
+    width: 47px;
+    height: 47px;
+}
+
+#computerTurnButton img{
+    position: fixed;
+    width: 47px;
+    height: 47px;
+    top: 145px;
+    left: 854px;
+    }
+
+#computerCard0 {
+    position: fixed;
+    width: 77px;
+    height: 95px;
+    top: 475px;
+    left: 591px;
+
+}
+#computerCard1  {
+    position: fixed;
+    width: 77px;
+    height: 95px;
+    top: 475px;
+    left: 670px;
+}
+#computerCard2  {
+    position: fixed;
+    width: 77px;
+    height: 95px;
+    top: 475px;
+    left: 750px;
+}
+#computerCard3  {
+    position: fixed;
+    width: 77px;
+    height: 95px;
+    top: 475px;
+    left: 830px;
+}
+#playerCard0 {
+    position: fixed;
+    top: 475px;
+    left: 250px;
+    width: 75px;
+    height: 93px;
+}
+#playerCard1 {
+    position: fixed;
+    top: 475px;
+    left: 327px;
+    width: 75px;
+    height: 93px;
+}
+#playerCard2 {
+    position: fixed;
+    top: 475px;
+    left: 404px;
+    width: 75px;
+    height: 93px;
+}
+#playerCard3 {
+    position: fixed;
+    top: 475px;
+    left: 481px;
+    width: 75px;
+    height: 93px;
+}
+#playerName {
+ 
+    color: white;
+    position: fixed;
+    top: 148px;
+    left: 315px;
+}
+#opponentName {
+    color: white;
+    position: fixed;
+    top: 148px;
+    left: 780px;
+}
+#play1Button {
+    color: black;
+    position: fixed;
+    top: 571px;
+    left: 265px;
+}
+#play2Button {
+    color: black;
+    position: fixed;
+    top: 571px;
+    left: 344px;
+}
+#play3Button {
+    color: black;
+    position: fixed;
+    top: 571px;
+    left: 422px;
+}
+#play4Button {
+    color: black;
+    position: fixed;
+    top: 571px;
+    left: 500px;
+}
+#standButton {
+    color: black;
+    position: fixed;
+    top: 601px;
+    left: 798px;
+    cursor: pointer;
+}
+#endTurnButton {
+    color: black;
+    position: fixed;
+    top: 601px;
+    left: 635px;
+    cursor: pointer;
+}
+#newGame{
+    color: black;
+    position: fixed;
+    top: 628px;
+    left: 700px;
+}
+#playerScore {
+    text-align: center;
+    color: white;
+    position: fixed;
+    top: 154px;
+    left: 539px;
+}
+#opponentScore {
+    text-align: center;
+    color: white;
+    position: fixed;
+    top: 154px;
+    left: 593px;
+}
+#rPlayerCard0 {
+    position: fixed;
+    top: 190px;
+    left: 322px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard1 {
+    position: fixed;
+    top: 190px;
+    left: 400px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard2 {
+    position: fixed;
+    top: 190px;
+    left: 478px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard3 {
+    position: fixed;
+    top: 279px;
+    left: 322px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard4 {
+    position: fixed;
+    top: 279px;
+    left: 400px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard5 {
+    position: fixed;
+    top: 279px;
+    left: 479px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard6 {
+    position: fixed;
+    top: 368px;
+    left: 322px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard7 {
+    position: fixed;
+    top: 368px;
+    left: 400px;
+    width: 65px;
+    height: 79px;
+}
+#rPlayerCard8 {
+    position: fixed;
+    top: 368px;
+    left: 479px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard0 {
+    position: fixed;
+    top: 190px;
+    left: 608px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard1 {
+    position: fixed;
+    top: 190px;
+    left: 687px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard2 {
+    position: fixed;
+    top: 190px;
+    left: 765px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard3 {
+    position: fixed;
+    top: 280px;
+    left: 608px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard4 {
+    position: fixed;
+    top: 280px;
+    left: 687px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard5 {
+    position: fixed;
+    top: 280px;
+    left: 765px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard6 {
+    position: fixed;
+    top: 367px;
+    left: 608px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard7 {
+    position: fixed;
+    top: 367px;
+    left: 687px;
+    width: 65px;
+    height: 79px;
+}
+#rComputerCard8 {
+    position: fixed;
+    top: 367px;
+    left: 765px;
+    width: 65px;
+    height: 79px;
+}
+/* Delete these buttons eventually */
+#testComputerUseCard{
+    position: fixed;
+    top: 490px;
+    left: 920px;
+    cursor: pointer;
+}
+#testPlayerTurn{
+    position: fixed;
+    top: 150px;
+    left: 100px;
+    cursor: pointer;
+}
+#testPlayerWins {
+    position: fixed;
+    top: 250px;
+    left: 100px;
+    cursor: pointer;
+}
+#testComputerWins {
+    position: fixed;
+    top: 250px;
+    left: 920px;
+    cursor: pointer;
+}
+#playerWinLight1 img{
+    position: fixed;
+    width: 23px;
+    height: 29px;
+    top: 221px;
+    left: 254px;
+}
+#playerWinLight2 img{
+    position: fixed;
+    width: 23px;
+    height: 29px;
+    top: 253px;
+    left: 254px;
+}
+#playerWinLight3 img{
+    position: fixed;
+    width: 23px;
+    height: 29px;
+    top: 285px;
+    left: 254px;
+}
+#computerWinLight1 img{
+    position: fixed;
+    width: 23px;
+    height: 29px;
+    top: 221px;
+    left: 873px;
+}
+#computerWinLight2 img{
+    position: fixed;
+    width: 23px;
+    height: 29px;
+    top: 253px;
+    left: 873px;
+}
+#computerWinLight3 img{
+    position: fixed;
+    width: 23px;
+    height: 29px;
+    top: 285px;
+    left: 873px;
+}
+#taris {
+    position: fixed;
+    width: 168px;
+    top: 602px;
+    left: 383px;
+    cursor: pointer;
+}
+#tutorial {
+    position: fixed;
+    height: 50px;
+    top: 601px;
+    left: 275px;
+    cursor: pointer;
+}
+#testDeal {
+    position: fixed;
+    top: 400px;
+    left: 250px;
+    cursor: pointer;
+}
+#testCDeal {
+    position: fixed;
+    top: 400px;
+    left: 850px;
+    cursor: pointer;
+}
+#testCStand {
+    position: fixed;
+    top: 430px;
+    left: 850px;
+    cursor: pointer;
+}
+#nextRound {
+    position: fixed;
+    top: 630px;
+    left: 950px;
+    cursor: pointer;
+}
+#iziz {
+    color: White;
+    position: fixed;
+    width: 168px;
+    top: 627px;
+    left: 383px;
+    cursor: pointer;
+}
+#messageBackgroundDisplayed {
+position: fixed;
+background-color:rgba(19, 28, 123, 0.8);
+border-radius: 15%;
+border: solid 5px rgba(112, 112, 113, 0.8);
+width: 950px;
+height: 230px;
+left: 105px;
+top: 270px;
+z-index: 1;
+}
+#messageBackgroundHidden {
+position: fixed;
+background-color: 29, 42, 184,.5;
+border-radius: 15%;
+width: 800px;
+height: 300px;
+left: -800px;
+top: 220px;
+z-index: 5;
+}
+#winMessage{
+    color: white;
+    padding-top: 70px;
+    text-align: center;
+    font-size: 1.3em;
+}
+#messageButton {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 420px;
+ text-align: center;
+}

@@ -372,6 +372,13 @@ const useCard = (e) => {
             document.getElementById('playerScore').innerText = player.score;
             console.log(player.score)
             play1Button.disabled = true
+            pCard1Toggle = play1Button.disabled;
+            pCard2Toggle = play2Button.disabled;
+            pCard3Toggle = play3Button.disabled;
+            pCard4Toggle = play4Button.disabled;
+            if (!computer.stand) {
+                endPlayerTurn()
+            }
             document.getElementById('playerCard0').src = 'https://i.imgur.com/Jt3MdsW.png'
             if (player.score === 20) {
                 playerStand()
@@ -393,6 +400,13 @@ const useCard = (e) => {
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
             play2Button.disabled = true
+            pCard1Toggle = play1Button.disabled;
+            pCard2Toggle = play2Button.disabled;
+            pCard3Toggle = play3Button.disabled;
+            pCard4Toggle = play4Button.disabled;
+            if (!computer.stand) {
+                endPlayerTurn()
+            }
             document.getElementById('playerCard1').src = 'https://i.imgur.com/Jt3MdsW.png'
             if (player.score === 20) {
                 playerStand()
@@ -413,6 +427,13 @@ const useCard = (e) => {
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
             play3Button.disabled = true
+            pCard1Toggle = play1Button.disabled;
+            pCard2Toggle = play2Button.disabled;
+            pCard3Toggle = play3Button.disabled;
+            pCard4Toggle = play4Button.disabled;
+            if (!computer.stand) {
+                endPlayerTurn()
+            }
             document.getElementById('playerCard2').src = 'https://i.imgur.com/Jt3MdsW.png'
             //LEAVING ROOM for functions stand, DealCard and placeCardOnBoard
             if (player.score === 20) {
@@ -433,6 +454,13 @@ const useCard = (e) => {
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
             play4Button.disabled = true
+            pCard1Toggle = play1Button.disabled;
+            pCard2Toggle = play2Button.disabled;
+            pCard3Toggle = play3Button.disabled;
+            pCard4Toggle = play4Button.disabled;
+            if (!computer.stand) {
+                endPlayerTurn()
+            }
             document.getElementById('playerCard3').src = 'https://i.imgur.com/Jt3MdsW.png'
             if (player.score === 20) {
                 playerStand()
@@ -447,6 +475,7 @@ const useCard = (e) => {
                     return false
                 }
             }
+
     }
 }
 
@@ -1156,8 +1185,8 @@ const computerStand = () => {
         endComputerTurn()
     }
 }
-// Setting event listeners for the buttons DELETE EVENTUALLY
-document.querySelector('#newGame').onclick = newGame; // DO NOT DELETE THIS ONE
+// Setting event listeners for the buttons
+document.querySelector('#newGame').onclick = newGame;
 document.querySelector('#testComputerWins').onclick = toggleCWin;
 document.querySelector('#testPlayerWins').onclick = togglePWin;
 document.querySelector('#testPlayerTurn').onclick = toggleTurn;

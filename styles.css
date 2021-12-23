@@ -111,29 +111,41 @@ p {
     left: 780px;
 }
 #play1Button {
-    color: black;
     position: fixed;
+    cursor: pointer;
     top: 571px;
     left: 265px;
 }
+/* #play1Button:hover {
+    color: orange;
+} */
 #play2Button {
-    color: black;
     position: fixed;
+    cursor: pointer;
     top: 571px;
     left: 344px;
 }
+/* #play2Button:hover {
+    color: orange;
+} */
 #play3Button {
-    color: black;
     position: fixed;
+    cursor: pointer;
     top: 571px;
     left: 422px;
 }
+/* #play3Button:hover {
+    color: orange;
+} */
 #play4Button {
-    color: black;
     position: fixed;
+    cursor: pointer;
     top: 571px;
     left: 500px;
 }
+/* #play4Button:hover {
+    color: orange;
+} */
 #standButton {
     color: black;
     position: fixed;
@@ -361,20 +373,23 @@ p {
     top: 285px;
     left: 873px;
 }
-#taris {
+#cantina {
     position: fixed;
     width: 168px;
-    top: 602px;
-    left: 383px;
+    top: 606px;
+    left: 377px;
     cursor: pointer;
 }
 #tutorial {
     position: fixed;
     height: 50px;
-    top: 601px;
+    top: 600px;
     left: 275px;
     cursor: pointer;
 }
+/* #tutorial:hover {
+    background-image: url(https://i.imgur.com/CJBoq6j.jpg);
+} */
 #testDeal {
     position: fixed;
     top: 400px;
@@ -412,9 +427,9 @@ position: fixed;
 background-color:rgba(19, 28, 123, 0.8);
 border-radius: 15%;
 border: solid 5px rgba(112, 112, 113, 0.8);
-width: 950px;
-height: 230px;
-left: 105px;
+width: 550px;
+height: 150px;
+left: 293px;
 top: 270px;
 z-index: 1;
 }
@@ -422,7 +437,7 @@ z-index: 1;
 position: fixed;
 background-color: 29, 42, 184,.5;
 border-radius: 15%;
-width: 800px;
+width: 500px;
 height: 300px;
 left: -800px;
 top: 220px;
@@ -430,13 +445,76 @@ z-index: 5;
 }
 #winMessage{
     color: white;
-    padding-top: 70px;
+    padding-top: 40px;
     text-align: center;
     font-size: 1.3em;
 }
 #messageButton {
     position: absolute;
     margin-top: 30px;
-    margin-left: 420px;
+    margin-left: 235px;
  text-align: center;
 }
+/* The following code is NOT mine but came from https://dev.to/webdeasy/top-20-css-buttons-animations-f41 */
+/* #cantina {
+    width: 180px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: fixed;
+    left: 370px;
+    top: 600px;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+#cantina:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+#cantina:active {
+    color: #000
+}
+
+#cantina:active:after {
+    background: transparent;
+}
+
+#cantina:hover:before {
+    opacity: 1;
+}
+
+#cantina:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+} */
+/* Comment out to the code above to make sure I'm only using code I've written */

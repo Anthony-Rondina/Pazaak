@@ -200,25 +200,29 @@ const computerCards = [{
     name: "computerCard0",
     value: 0,
     faceCard: '',
-    reversable: false
+    reversable: false,
+    played: false
 },
 {
     name: "computerCard1",
     value: 0,
     faceCard: '',
-    reversable: false
+    reversable: false,
+    played: false
 },
 {
     name: "computerCard2",
     value: 0,
     faceCard: '',
-    reversable: false
+    reversable: false,
+    played: false
 },
 {
     name: "computerCard3",
     value: 0,
     faceCard: '',
-    reversable: false
+    reversable: false,
+    played: false
 },
 ]
 //This function randomly assigns the computer's 4 cards and other values
@@ -807,8 +811,8 @@ const computerChoice = () => {
 // 			4-play a card and stand
 // 		2-else stand and lose
 const computerDecide = () => {
-    player.score = 17;
-    computer.score = 22;
+    // player.score = 17;
+    // computer.score = 22;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')
@@ -844,40 +848,39 @@ const computerDecide = () => {
             console.log('computer score is greater than player score and under 20')
             console.log('computer will try and play a card')
             computerPlayCard()
+            //program does not wait for card to play
             setTimeout(() => {
-                console.log('computer finishes considering')
-            }, 800)
-            if (computer.score > player.score && computer.score < 17) {
-                console.log('Computer could not find a card and will end its turn')
-                setTimeout(() => {
-                    endComputerTurn()
-                }, 800)
-            } else if (computer.score < player.score && computer.score < 17) {
-                console.log('Computer could not find a card and will end its turn')
-                setTimeout(() => {
-                    endComputerTurn()
-                }, 800)
-                setTimeout(() => {
-                    console.log('computer finishes considering')
-                }, 800)
-            } else if (computer.score === 17 || computer.score === 18 || computer.score === 19) {
-                setTimeout(() => {
-                    console.log('Computer score too high to risk more. Computer will stand')
+                if (computer.score > player.score && computer.score < 17) {
+                    console.log('Computer could not find a card and will end its turn')
+                    setTimeout(() => {
+                        endComputerTurn()
+                    }, 800)
+                } else if (computer.score < player.score && computer.score < 17) {
+                    console.log('Computer could not find a card and will end its turn')
+                    setTimeout(() => {
+                        endComputerTurn()
+                    }, 800)
+                    setTimeout(() => {
+                        console.log('computer finishes considering')
+                    }, 800)
+                } else if (computer.score === 17 || computer.score === 18 || computer.score === 19) {
+                    setTimeout(() => {
+                        console.log('Computer score too high to risk more. Computer will stand')
+                        computerStand()
+                    }, 800)
+                    console.log('Computer has stood = ', computer.stand)
+                    setTimeout(() => {
+                        console.log('computer finishes considering')
+                    }, 800)
+                } else if (computer.score === 20) {
                     computerStand()
-                }, 800)
-                console.log('Computer has stood = ', computer.stand)
-                setTimeout(() => {
-                    console.log('computer finishes considering')
-                }, 800)
-            }
+                }
+            }, 1500)
         } else if (computer.score === player.score && computer.score < 20) {
             console.log('computer sees a tie and that its score is less than 20')
             console.log('computer will try and play a card')
             setTimeout(() => {
                 computerPlayCard()
-            }, 800)
-            setTimeout(() => {
-                console.log('computer finishes considering')
             }, 800)
             //possible problem here
             if (computer.score > 20) {
@@ -903,7 +906,7 @@ const computerDecide = () => {
                     console.log('computer could not find a card and will stand and lose.')
                     computerStand()
                     console.log('The computer has stood, if the player stands and is under 20, the player should win.')
-                }, 100)
+                }, 500)
             }
         }
         //starting if statemtents based on the player having stood
@@ -925,7 +928,7 @@ const computerDecide = () => {
                 console.log('Computer score is ', computer.score)
                 setTimeout(() => {
                     dealRandomComputerCard()
-                }, 1000)
+                }, 800)
                 setTimeout(() => {
                     computerChoice()
                 }, 1200)
@@ -946,7 +949,7 @@ const computerDecide = () => {
                         computerStand()
                         console.log('The computer has stood, if the player stands and is under 20, the player should win.')
                     }
-                }, 1500)
+                }, 1000)
             }
         } else if (computer.score > player.score && computer.score < 20) {
             if (computer.score < player.score && computer.score < 20) {
@@ -999,61 +1002,68 @@ const computerDecide = () => {
 const computerPlayCard = () => {
     setTimeout(() => {
         for (let i = 0; i < 4; i++) {
-            if (computerCards[i].value + computer.score === 20 || computerCards[i].value + computer.score === 19 || computerCards[i].value + computer.score === 18) {
-                console.log("computer found a card to play")
-                computer.score += computerCards[i].value;
-                console.log('computer plays ', computerCards[i].value, 'making ', computerCards[i].value + computer.score)
-                untogglePlayCards()
-                toggleTurn()
-                endTurnButton.disabled = false;
-                computer.stand = true;
-                computerCards[i].value = 0
-                if (player.stand && computer.stand) {
-                    checkScore()
-                }
-                console.log("computer.stand =", computer.stand)
-                //For loop to check played status of all 9 locations to place a card
-                for (let j = 0; j < computerRandomCardArray.length; j++) {
-                    if (!computerRandomCardArray[j].played) {
-                        document.getElementById('rComputerCard' + [j]).src = computerCards[i].faceCard;
-                        computerRandomCardArray[j].played = true;
-                        document.getElementById('opponentScore').innerText = computer.score; document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/Jt3MdsW.png"
-                        return false
+            if (!computerCards[i].played) {
+                if (computerCards[i].value + computer.score === 20 || computerCards[i].value + computer.score === 19 || computerCards[i].value + computer.score === 18) {
+                    console.log("computer found a card to play")
+                    computer.score += computerCards[i].value;
+                    console.log('computer score is = ', computer.score)
+                    console.log('computer plays ', computerCards[i].value, 'making ', computerCards[i].value + computer.score)
+                    untogglePlayCards()
+                    toggleTurn()
+                    endTurnButton.disabled = false;
+                    computer.stand = true;
+                    computerCards[i].value = 0
+                    computerCards[i].played = true;
+                    if (player.stand && computer.stand) {
+                        checkScore()
+                    }
+                    console.log("computer.stand =", computer.stand)
+                    //For loop to check played status of all 9 locations to place a card
+                    for (let j = 0; j < computerRandomCardArray.length; j++) {
+                        if (!computerRandomCardArray[j].played) {
+                            document.getElementById('rComputerCard' + [j]).src = computerCards[i].faceCard;
+                            computerRandomCardArray[j].played = true;
+                            document.getElementById('opponentScore').innerText = computer.score; document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/Jt3MdsW.png"
+                            return false
+                        }
                     }
                 }
             }
         }
-    }, 500)
+    }, 1000)
 }
 
 //This function is used to help the computer pick a card when the player has stood.
 const computerPlayCardStand = () => {
     setTimeout(() => {
         for (let i = 0; i < 4; i++) {
-            if (computerCards[i].value + computer.score >= player.score && computerCards[i].value + computer.score <= 20) {
-                console.log("computer found a card to play")
-                console.log('computer will play card ', [i])
-                computer.score += computerCards[i].value;
-                console.log('computer plays ', computerCards[i].value + computer.score)
-                computerCards[i].value = 0
-                untogglePlayCards()
-                toggleTurn()
-                endTurnButton.disabled = false;
-                computer.stand = true;
-                checkScore()
-                console.log("computer.stand =", computer.stand)
-                //For loop to check played status of all 9 locations to place a card
-                for (let j = 0; j < computerRandomCardArray.length; j++) {
-                    if (!computerRandomCardArray[j].played) {
-                        document.getElementById('rComputerCard' + [j]).src = computerCards[i].faceCard;
-                        computerRandomCardArray[j].played = true;
-                        document.getElementById('opponentScore').innerText = computer.score; document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/Jt3MdsW.png"
-                        return false
+            if (!computerCards[i].played) {
+                if (computerCards[i].value + computer.score >= player.score && computerCards[i].value + computer.score <= 20) {
+                    console.log("computer found a card to play")
+                    console.log('computer will play card ', [i])
+                    computer.score += computerCards[i].value;
+                    console.log('computer plays ', computerCards[i].value + computer.score)
+                    computerCards[i].value = 0
+                    untogglePlayCards()
+                    toggleTurn()
+                    endTurnButton.disabled = false;
+                    computer.stand = true;
+                    computerCards[i].played = true;
+                    checkScore()
+                    console.log("computer.stand =", computer.stand)
+                    //For loop to check played status of all 9 locations to place a card
+                    for (let j = 0; j < computerRandomCardArray.length; j++) {
+                        if (!computerRandomCardArray[j].played) {
+                            document.getElementById('rComputerCard' + [j]).src = computerCards[i].faceCard;
+                            computerRandomCardArray[j].played = true;
+                            document.getElementById('opponentScore').innerText = computer.score; document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/Jt3MdsW.png"
+                            return false
+                        }
                     }
                 }
             }
         }
-    }, 0)
+    }, 500)
 }
 // creates a function that helps the computer decide to keep playing
 
@@ -1081,8 +1091,7 @@ const checkScore = () => {
                 document.getElementById('winMessage').innerHTML = 'The Computer wins the set!'
                 document.getElementById('messageButton').innerHTML = 'Next Round'
                 document.getElementById('messageButton').onclick = clearTable;
-            }
-            else if (player.score > computer.score && player.score <= 20) {
+            } else if (player.score > computer.score && player.score <= 20) {
                 console.log("Player wins with the higher score!", computer.score, player.score)
                 togglePWin()
                 if (player.victory === 3) {
@@ -1095,8 +1104,7 @@ const checkScore = () => {
                 document.getElementById('winMessage').innerHTML = 'The Player wins the set!'
                 document.getElementById('messageButton').innerHTML = 'Next Round'
                 document.getElementById('messageButton').onclick = clearTable;
-            }
-            if (player.score > computer.score && player.score > 20) {
+            } else if (player.score > computer.score && player.score > 20) {
                 toggleCWin()
                 if (computer.victory === 3) {
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
@@ -1124,10 +1132,10 @@ const checkScore = () => {
                 document.getElementById('winMessage').innerHTML = 'The Player wins the set!'
                 document.getElementById('messageButton').innerHTML = 'Next Round'
                 document.getElementById('messageButton').onclick = clearTable;
-            } else if (player.victory === computer.score) {
+            } else if (player.score === computer.score) {
                 console.log('Its a tie!', computer.score, player.score)
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                document.getElementById('winMessage').innerHTML = 'The set tied!'
+                document.getElementById('winMessage').innerHTML = "It's a Tie!"
                 document.getElementById('messageButton').innerHTML = 'Next Round'
                 document.getElementById('messageButton').onclick = clearTable;
             }
@@ -1195,7 +1203,7 @@ const playerStand = () => {
         } else {
             endPlayerTurn()
         }
-    }, 1000)
+    }, 10)
 }
 
 const computerStand = () => {
@@ -1207,25 +1215,24 @@ const computerStand = () => {
     }
 }
 
-const junk = () => {
-    player.stand = true;
-    console.log(player.stand, computer.stand)
-}
+// const junk = () => {
+//     player.stand = true;
+//     console.log(player.stand, computer.stand)
+// }
 // Setting event listeners for the buttons
 document.querySelector('#newGame').onclick = newGame;
-document.querySelector('#testComputerWins').onclick = toggleCWin;
-document.querySelector('#testPlayerWins').onclick = togglePWin;
-document.querySelector('#testPlayerTurn').onclick = toggleTurn;
 document.getElementById('play1Button').onclick = useCard;
 document.getElementById('play2Button').onclick = useCard;
 document.getElementById('play3Button').onclick = useCard;
 document.getElementById('play4Button').onclick = useCard;
-document.getElementById('testDeal').onclick = dealRandomPlayerCard;
-document.getElementById('testCDeal').onclick = dealRandomComputerCard;
 document.getElementById('endTurnButton').onclick = endPlayerTurn;
-document.getElementById('testComputerUseCard').onclick = endComputerTurn;
 document.getElementById('standButton').onclick = playerStand;
-document.getElementById('testCStand').onclick = computerStand;
-document.getElementById('nextRound').onclick = junk;
 document.getElementById('messageButton').onclick = clearTable;
-
+// document.getElementById('testCStand').onclick = computerStand;
+// document.getElementById('nextRound').onclick = junk;
+// document.querySelector('#testComputerWins').onclick = toggleCWin;
+// document.querySelector('#testPlayerWins').onclick = togglePWin;
+// document.querySelector('#testPlayerTurn').onclick = toggleTurn;
+// document.getElementById('testDeal').onclick = dealRandomPlayerCard;
+// document.getElementById('testCDeal').onclick = dealRandomComputerCard;
+// document.getElementById('testComputerUseCard').onclick = endComputerTurn;

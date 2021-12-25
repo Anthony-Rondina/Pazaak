@@ -807,8 +807,8 @@ const computerChoice = () => {
 // 			4-play a card and stand
 // 		2-else stand and lose
 const computerDecide = () => {
-    // player.score = 19;
-    // computer.score = 19;
+    player.score = 17;
+    computer.score = 22;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')
@@ -898,14 +898,13 @@ const computerDecide = () => {
             console.log('computer score is greater than 20')
             console.log('computer will try and play a card')
             computerPlayCardStand()
-            //*********Need pause here now */
-            setTimeout(() => {
-                if (computer.score > 20) {
+            if (computer.score > 20) {
+                setTimeout(() => {
                     console.log('computer could not find a card and will stand and lose.')
                     computerStand()
                     console.log('The computer has stood, if the player stands and is under 20, the player should win.')
-                }
-            }, 800)
+                }, 100)
+            }
         }
         //starting if statemtents based on the player having stood
     } if (player.stand) {
@@ -983,7 +982,9 @@ const computerDecide = () => {
     } else if (computer.score > 20) {
         console.log('computer score is greater than 20')
         console.log('computer will try and play a card')
-        computerPlayCardStand()
+        setTimeout(() => {
+            computerPlayCardStand()
+        }, 1000)
         setTimeout(() => {
             if (computer.score > 20) {
                 console.log('computer could not find a card and will stand and lose.')
@@ -1039,6 +1040,7 @@ const computerPlayCardStand = () => {
                 toggleTurn()
                 endTurnButton.disabled = false;
                 computer.stand = true;
+                checkScore()
                 console.log("computer.stand =", computer.stand)
                 //For loop to check played status of all 9 locations to place a card
                 for (let j = 0; j < computerRandomCardArray.length; j++) {
@@ -1188,12 +1190,12 @@ const playerStand = () => {
             player.stand = true
             computer.stand = true
         }
-        if (player.stand === true && computer.stand === true) {
+        if (player.stand && computer.stand) {
             checkScore()
         } else {
             endPlayerTurn()
         }
-    }, 500)
+    }, 1000)
 }
 
 const computerStand = () => {

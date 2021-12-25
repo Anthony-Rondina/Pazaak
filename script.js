@@ -689,10 +689,6 @@ const dealRandomComputerCard = () => {
             computerRandomCardArray[i].value = index;
             computer.score += index;
             document.getElementById('opponentScore').innerText = computer.score;
-            if (computer.score === 20) {
-                computerStand()
-                endTurnButton.disabled = false;
-            }
             return false
         }
     }
@@ -763,6 +759,9 @@ const computerChoice = () => {
         case 19:
             computerDecide()
             break;
+        case 20:
+            computerDecide()
+            break;
         case 21:
             computerDecide()
             break;
@@ -813,7 +812,10 @@ const computerDecide = () => {
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')
-        if (computer.score < player.score && computer.score < 20) {
+        if (computer.score === 20) {
+            console.log('computer got a natural 20 and will stand')
+            computerStand()
+        } else if (computer.score < player.score && computer.score < 20) {
             console.log('computer score is less than player score and under 20')
             console.log('computer will try and play a card')
             computerPlayCard()
@@ -1179,6 +1181,7 @@ const endComputerTurn = () => {
 
 const playerStand = () => {
     setTimeout(() => {
+        standButton.disabled = true
         console.log('player has clicked the stand button')
         player.stand = true;
         if (player.score > 20 && computer.score <= 20) {

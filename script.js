@@ -821,7 +821,7 @@ const computerChoice = () => {
 // 		2-else stand and lose
 const computerDecide = () => {
     // Force scores to test certain things
-    player.score = 19;
+    // player.score = 19;
     // computer.score = 0;
     //starting if statemtents based on the player not standing
     if (!player.stand) {

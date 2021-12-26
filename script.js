@@ -811,8 +811,8 @@ const computerChoice = () => {
 // 			4-play a card and stand
 // 		2-else stand and lose
 const computerDecide = () => {
-    // player.score = 17;
-    // computer.score = 22;
+    player.score = 1;
+    computer.score = 27;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')
@@ -825,23 +825,23 @@ const computerDecide = () => {
             computerPlayCard()
             setTimeout(() => {
                 console.log('computer has stopped considering')
-            }, 2000)
+            }, 1500)
             if (computer.score < player.score && computer.score < 17) {
                 console.log('Computer could not find a card and will end its turn')
                 setTimeout(() => {
                     endComputerTurn()
-                }, 2000)
+                }, 1500)
             } else if (computer.score > player.score && computer.score < 17) {
                 console.log('Computer could not find a card and will end its turn')
                 setTimeout(() => {
                     endComputerTurn()
-                }, 2000)
+                }, 1500)
                 console.log('computer has ended its turn.')
             } else if (computer.score === 17 || computer.score === 18 || computer.score === 19) {
                 setTimeout(() => {
                     console.log('Computer score too high to risk more.')
                     computerStand()
-                }, 2000)
+                }, 1500)
                 console.log('Computer has stood = ', computer.stand)
             }
         } else if (computer.score > player.score && computer.score < 20) {
@@ -874,9 +874,15 @@ const computerDecide = () => {
                     }, 800)
                 } else if (computer.score === 20) {
                     computerStand()
+                } else if (computer.score > 20) {
+                    console.log('computer busted')
+                    computer.stand = true
+                    player.stand = true
+                    checkScore()
+                    console.log('sending checkscore request.')
                 }
             }, 1500)
-        } else if (computer.score === player.score && computer.score < 20) {
+        } else if (computer.score === player.score && computer.score <= 20) {
             console.log('computer sees a tie and that its score is less than 20')
             console.log('computer will try and play a card')
             setTimeout(() => {
@@ -902,11 +908,14 @@ const computerDecide = () => {
             console.log('computer will try and play a card')
             computerPlayCardStand()
             if (computer.score > 20) {
-                setTimeout(() => {
-                    console.log('computer could not find a card and will stand and lose.')
-                    computerStand()
-                    console.log('The computer has stood, if the player stands and is under 20, the player should win.')
-                }, 500)
+                console.log('computer could not find a card and will stand and lose.')
+                untogglePlayCards()
+                computer.stand = true
+                player.stand = true
+                checkScore()
+                console.log('sending checkscore request.')
+                return false
+                //use return false to force code to end or else player standing will trigger the player standing if situations
             }
         }
         //starting if statemtents based on the player having stood
@@ -996,6 +1005,10 @@ const computerDecide = () => {
                 console.log('The computer has stood, if the player stands and is under 20, the player should win.')
             }
         }, 1500)
+    } else if (computer.score === 20) {
+        console.log('computer drew a 20 and will stand')
+        computerStand()
+        checkScore()
     }
 }
 // plays computer card and places it
@@ -1068,7 +1081,6 @@ const computerPlayCardStand = () => {
 // creates a function that helps the computer decide to keep playing
 
 const checkScore = () => {
-    // if(checkscore)
     play1Button.disabled = true
     play2Button.disabled = true
     play3Button.disabled = true
@@ -1215,7 +1227,7 @@ const computerStand = () => {
     }
 }
 
-// const junk = () => {
+// const bust = () => {
 //     player.stand = true;
 //     console.log(player.stand, computer.stand)
 // }

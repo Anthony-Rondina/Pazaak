@@ -811,8 +811,8 @@ const computerChoice = () => {
 // 			4-play a card and stand
 // 		2-else stand and lose
 const computerDecide = () => {
-    player.score = 1;
-    computer.score = 27;
+    // player.score = 1;
+    // computer.score = 27;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')

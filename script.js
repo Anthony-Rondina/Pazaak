@@ -1219,6 +1219,16 @@ const computerStand = () => {
 //     player.stand = true;
 //     console.log(player.stand, computer.stand)
 // }
+
+let audioElement = document.getElementById("myAudio");
+function togglePlay() {
+    if (audioElement.paused) {
+        audioElement.play();
+    }
+    else {
+        audioElement.pause();
+    }
+};
 // Setting event listeners for the buttons
 document.querySelector('#newGame').onclick = newGame;
 document.getElementById('play1Button').onclick = useCard;

@@ -111,60 +111,158 @@ p {
     left: 780px;
 }
 #play1Button {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: orange;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     cursor: pointer;
     top: 571px;
     left: 265px;
 }
-/* #play1Button:hover {
-    color: orange;
-} */
+#play1Button:hover {
+    color: white;
+    border-color: orange;
+}
+#play1Button:disabled {
+    color:grey;
+    border-color: grey;
+}
 #play2Button {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: orange;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     cursor: pointer;
     top: 571px;
     left: 344px;
 }
-/* #play2Button:hover {
-    color: orange;
-} */
+#play2Button:hover {
+    color: white;
+    border-color: orange;
+}
+#play2Button:disabled {
+    color:grey;
+    border-color: grey;
+}
 #play3Button {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: orange;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     cursor: pointer;
     top: 571px;
     left: 422px;
 }
-/* #play3Button:hover {
-    color: orange;
-} */
+#play3Button:hover {
+    color: white;
+    border-color: orange;
+}
+#play3Button:disabled {
+    color:grey;
+    border-color: grey;
+}
 #play4Button {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: orange;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     cursor: pointer;
     top: 571px;
     left: 500px;
 }
-/* #play4Button:hover {
-    color: orange;
-} */
+#play4Button:hover {
+    color: white;
+    border-color: orange;
+}
+#play4Button:disabled {
+    color:grey;
+    border-color: grey;
+}
 #standButton {
-    color: black;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: #f4a261;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     top: 601px;
     left: 798px;
     cursor: pointer;
 }
+#standButton:hover {
+    color: red;
+}
+#standButton:disabled {
+    color:grey;
+    border-color: grey;
+}
 #endTurnButton {
-    color: black;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: orange;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     top: 601px;
     left: 635px;
     cursor: pointer;
 }
+#endTurnButton:hover {
+    color: red;
+}
+#endTurnButton:disabled {
+    color:grey;
+    border-color: grey;
+}
 #newGame{
-    color: black;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     top: 628px;
     left: 700px;
+}
+#newGame:hover {
+    border-color: green;
+    color: white;
 }
 #playerScore {
     text-align: center;
@@ -374,22 +472,45 @@ p {
     left: 873px;
 }
 #cantina {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     width: 168px;
     top: 606px;
     left: 377px;
     cursor: pointer;
 }
+#cantina:hover {
+    border-color: #1982c4;
+    color: lightgrey;
+}
 #tutorial {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: fixed;
     height: 50px;
     top: 600px;
     left: 275px;
     cursor: pointer;
 }
-/* #tutorial:hover {
-    background-image: url(https://i.imgur.com/CJBoq6j.jpg);
-} */
+#tutorial:hover {
+    border-color: #1982c4;
+    color: white;
+}
 #testDeal {
     position: fixed;
     top: 400px;
@@ -439,10 +560,23 @@ z-index: 5;
     font-size: 1.3em;
 }
 #messageButton {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
     position: absolute;
     margin-top: 30px;
     margin-left: 235px;
  text-align: center;
+}
+#messageButton:hover {
+    border-color: green;
+    color: white;
 }
 #playerStandDisplay{
     background-color: rgb(48, 55, 66,.5);
@@ -471,12 +605,7 @@ z-index: 5;
     top: 185px;
 }
 #computerStandHidden{
-    background-color: rgb(48, 55, 66,0);
-    width: 228px;
-    height: 265px;
-    position: fixed;
-    left: 605px;
-    top: 185px;
+    display: none;
 }
 #messageBackgroundDisplayed {
     position: fixed;
@@ -489,66 +618,22 @@ z-index: 5;
     top: 235px;
     z-index: 1;
     }
-/* The following code is NOT mine but came from https://dev.to/webdeasy/top-20-css-buttons-animations-f41 */
-/* #cantina {
-    width: 180px;
-    height: 50px;
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #111;
-    cursor: pointer;
+#creditPage {
     position: fixed;
-    left: 370px;
-    top: 600px;
-    z-index: 0;
-    border-radius: 10px;
+    background-color: #264653;
+    width: 1115px;
+    height: 75px;
+    left: 18px;
 }
-
-#cantina:before {
-    content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    position: absolute;
-    top: -2px;
-    left:-2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing 20s linear infinite;
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
-    border-radius: 10px;
+#recreated {
+    color: white;
+    text-align: center;
 }
-
-#cantina:active {
-    color: #000
+#AR {
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
 }
-
-#cantina:active:after {
-    background: transparent;
+#linkedin {
+    color: white;
 }
-
-#cantina:hover:before {
-    opacity: 1;
-}
-
-#cantina:after {
-    z-index: -1;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #111;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
-}
-
-@keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
-} */
-/* Comment out to the code above to make sure I'm only using code I've written */

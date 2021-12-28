@@ -1241,6 +1241,9 @@ function togglePlay() {
         audioElement.pause();
     }
 };
+const visit = () => {
+    window.open("https://starwars.fandom.com/wiki/Pazaak/Legends", '_blank')
+}
 // Setting event listeners for the buttons
 document.querySelector('#newGame').onclick = newGame;
 document.getElementById('play1Button').onclick = useCard;
@@ -1250,6 +1253,7 @@ document.getElementById('play4Button').onclick = useCard;
 document.getElementById('endTurnButton').onclick = endPlayerTurn;
 document.getElementById('standButton').onclick = playerStand;
 document.getElementById('messageButton').onclick = clearTable;
+document.getElementById('tutorial').onclick = visit;
 // document.getElementById('testCStand').onclick = computerStand;
 // document.getElementById('nextRound').onclick = junk;
 // document.querySelector('#testComputerWins').onclick = toggleCWin;

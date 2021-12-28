@@ -422,17 +422,6 @@ p {
     left: 383px;
     cursor: pointer;
 }
-#messageBackgroundDisplayed {
-position: fixed;
-background-color:rgba(19, 28, 123, 0.8);
-border-radius: 15%;
-border: solid 5px rgba(112, 112, 113, 0.8);
-width: 550px;
-height: 150px;
-left: 293px;
-top: 235px;
-z-index: 1;
-}
 #messageBackgroundHidden {
 position: fixed;
 background-color: 29, 42, 184,.5;
@@ -455,6 +444,51 @@ z-index: 5;
     margin-left: 235px;
  text-align: center;
 }
+#playerStandDisplay{
+    background-color: rgb(48, 55, 66,.5);
+    width: 228px;
+    height: 265px;
+    position: fixed;
+    left: 318px;
+    top: 185px;
+    z-index: 10;
+}
+#computerStandDisplay{
+    background-color: rgb(48, 55, 66,.5);
+    width: 228px;
+    height: 265px;
+    position: fixed;
+    left: 605px;
+    top: 185px;
+    z-index: 10;
+}
+#playerStandHidden{
+    background-color: rgb(48, 55, 66,0);
+    width: 228px;
+    height: 265px;
+    position: fixed;
+    left: 318px;
+    top: 185px;
+}
+#computerStandHidden{
+    background-color: rgb(48, 55, 66,0);
+    width: 228px;
+    height: 265px;
+    position: fixed;
+    left: 605px;
+    top: 185px;
+}
+#messageBackgroundDisplayed {
+    position: fixed;
+    background-color:rgba(19, 28, 123, 0.8);
+    border-radius: 15%;
+    border: solid 5px rgba(112, 112, 113, 0.8);
+    width: 550px;
+    height: 150px;
+    left: 293px;
+    top: 235px;
+    z-index: 1;
+    }
 /* The following code is NOT mine but came from https://dev.to/webdeasy/top-20-css-buttons-animations-f41 */
 /* #cantina {
     width: 180px;

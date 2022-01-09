@@ -247,6 +247,7 @@ p {
     border-color: grey;
 }
 #newGame{
+    cursor: pointer;
     border-top: solid;
     border-bottom: solid;
     border-left: none;

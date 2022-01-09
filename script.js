@@ -103,6 +103,12 @@ const toggleCWin = () => {
 }
 
 const newGame = () => { // clears the board of victory lights and reset to player going first
+    if (document.getElementById('playerStandDisplay')) {
+        document.getElementById('playerStandDisplay').id = 'playerStandHidden';
+    }
+    if (document.getElementById('computerStandDisplay')) {
+        document.getElementById('computerStandDisplay').id = 'computerStandHidden';
+    }
     player.victory = 3; //pushes player to 3 wins so next call will trigger a reset
     computer.victory = 3; //pushes computer to 3 wins so next call will trigger a reset
     togglePWin();
@@ -135,6 +141,12 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
 }
 const clearTable = () => { // clears the board of victory lights and reset to player going first
+    if (document.getElementById('playerStandDisplay')) {
+        document.getElementById('playerStandDisplay').id = 'playerStandHidden';
+    }
+    if (document.getElementById('computerStandDisplay')) {
+        document.getElementById('computerStandDisplay').id = 'computerStandHidden';
+    }
     togglePTurnLight = false;
     toggleTurn()
     player.score = 0;
@@ -1060,6 +1072,7 @@ const computerPlayCardStand = () => {
     for (let i = 0; i < 4; i++) {
         if (!computerCards[i].played) {
             if (computerCards[i].value + computer.score >= player.score && computerCards[i].value + computer.score <= 20) {
+                document.getElementById('computerStandHidden').id = 'computerStandDisplay';
                 console.log("computer found a card to play")
                 console.log('computer will play card ', [i])
                 computer.score += computerCards[i].value;
@@ -1209,6 +1222,7 @@ const endComputerTurn = () => {
 }
 
 const playerStand = () => {
+    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
     setTimeout(() => {
         standButton.disabled = true
         console.log('player has clicked the stand button')
@@ -1226,6 +1240,7 @@ const playerStand = () => {
 }
 
 const computerStand = () => {
+    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
     computer.stand = true;
     if (player.stand && computer.stand) {
         checkScore()

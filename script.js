@@ -138,7 +138,10 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     computer.stand = false
     standButton.disabled = false
     endTurnButton.disabled = false;
-    document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
+    if (document.getElementById('messageBackgroundDisplayed')) {
+        document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
+
+    }
 }
 const clearTable = () => { // clears the board of victory lights and reset to player going first
     if (document.getElementById('playerStandDisplay')) {
@@ -164,7 +167,10 @@ const clearTable = () => { // clears the board of victory lights and reset to pl
     endTurnButton.disabled = false;
     console.log(player.stand)
     untogglePlayCards()
-    document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
+    if (document.getElementById('messageBackgroundDisplayed')) {
+        document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
+
+    }
 }
 //Creates an array of all the Playing Card Faces
 const choices = [
@@ -835,7 +841,7 @@ const computerChoice = () => {
 const computerDecide = () => {
     // Force scores to test certain things
     // player.score = 19;
-    // computer.score = 23;
+    // computer.score = 27;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')
@@ -931,6 +937,12 @@ const computerDecide = () => {
             if (computer.score > 20) {
                 console.log('computer could not find a card and will stand and lose.')
                 untogglePlayCards()
+                if (document.getElementById('computerStandHidden')) {
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                }
+                if (document.getElementById('playerStandHidden')) {
+                    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                }
                 computer.stand = true
                 player.stand = true
                 checkScore()
@@ -1049,6 +1061,7 @@ const computerPlayCard = () => {
                 computer.stand = true;
                 computerCards[i].value = 0
                 computerCards[i].played = true;
+                // document.getElementById('computerStandHidden').id = 'computerStandDisplay';
                 if (player.stand && computer.stand) {
                     checkScore()
                 }
@@ -1240,12 +1253,21 @@ const playerStand = () => {
 }
 
 const computerStand = () => {
-    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
-    computer.stand = true;
-    if (player.stand && computer.stand) {
-        checkScore()
-    } else {
-        endComputerTurn()
+    if (document.getElementById('computerStandHidden')) {
+        document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+        computer.stand = true;
+        if (player.stand && computer.stand) {
+            checkScore()
+        } else {
+            endComputerTurn()
+        }
+    } else if (document.getElementById('computerStandDisplay')) {
+        computer.stand = true;
+        if (player.stand && computer.stand) {
+            checkScore()
+        } else {
+            endComputerTurn()
+        }
     }
 }
 

@@ -142,6 +142,10 @@ const newGame = () => { // clears the board of victory lights and reset to playe
         document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
 
     }
+    //reset the played value for the computer cards
+    computerCards.forEach((item) => {
+        item.played = false
+    })
 }
 const clearTable = () => { // clears the board of victory lights and reset to player going first
     if (document.getElementById('playerStandDisplay')) {
@@ -841,7 +845,7 @@ const computerChoice = () => {
 
 // this function is the computer AI for how to play the game
 const computerDecide = () => {
-    // Force scores to test certain things
+    // Force scores to test certain conditions
     // player.score = 29;
     // computer.score = 23;
     //starting if statemtents based on the player not standing
@@ -854,9 +858,9 @@ const computerDecide = () => {
             console.log('computer score is less than player score and under 20')
             console.log('computer will try and play a card')
             computerPlayCard()
-            setTimeout(() => {
-                console.log('computer has stopped considering')
-            }, 1500)
+            // setTimeout(() => {
+            //     console.log('computer has stopped considering')
+            // }, 1500)
             if (computer.score < player.score && computer.score < 17) {
                 console.log('Computer could not find a card and will end its turn')
                 setTimeout(() => {
@@ -890,18 +894,18 @@ const computerDecide = () => {
                 setTimeout(() => {
                     endComputerTurn()
                 }, 800)
-                setTimeout(() => {
-                    console.log('computer finishes considering')
-                }, 800)
+                // setTimeout(() => {
+                //     console.log('computer finishes considering')
+                // }, 800)
             } else if (computer.score === 17 || computer.score === 18 || computer.score === 19) {
                 setTimeout(() => {
                     console.log('Computer score too high to risk more. Computer will stand')
                     computerStand()
                 }, 800)
                 console.log('Computer has stood = ', computer.stand)
-                setTimeout(() => {
-                    console.log('computer finishes considering')
-                }, 800)
+                // setTimeout(() => {
+                //     console.log('computer finishes considering')
+                // }, 800)
             } else if (computer.score === 20) {
                 computerStand()
             } else if (computer.score > 20) {
@@ -924,9 +928,9 @@ const computerDecide = () => {
                 setTimeout(() => {
                     computer.stand = true
                 }, 800)
-                setTimeout(() => {
-                    console.log('computer finishes considering')
-                }, 800)
+                // setTimeout(() => {
+                //     console.log('computer finishes considering')
+                // }, 800)
             } else if (computer.score < 20) {
                 setTimeout(() => {
                     endComputerTurn()
@@ -1284,12 +1288,6 @@ const computerStand = () => {
         }
     }
 }
-
-// const bust = () => {
-//     player.stand = true;
-//     console.log(player.stand, computer.stand)
-// }
-
 let audioElement = document.getElementById("myAudio");
 function togglePlay() {
     if (audioElement.paused) {

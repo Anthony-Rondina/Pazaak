@@ -838,10 +838,12 @@ const computerChoice = () => {
 // 		3-will playing a card help?
 // 			4-play a card and stand
 // 		2-else stand and lose
+
+// this function is the computer AI for how to play the game
 const computerDecide = () => {
     // Force scores to test certain things
-    // player.score = 19;
-    // computer.score = 27;
+    // player.score = 29;
+    // computer.score = 23;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')
@@ -1194,6 +1196,12 @@ const endPlayerTurn = () => {
     play3Button.disabled = true
     play4Button.disabled = true
     if (player.score > 20 && computer.score <= 20) {
+        if (document.getElementById('computerStandHidden')) {
+            document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+        }
+        if (document.getElementById('playerStandHidden')) {
+            document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+        }
         player.stand = true
         computer.stand = true
         untogglePlayCards()
@@ -1241,6 +1249,12 @@ const playerStand = () => {
         console.log('player has clicked the stand button')
         player.stand = true;
         if (player.score > 20 && computer.score <= 20) {
+            if (document.getElementById('computerStandHidden')) {
+                document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+            }
+            if (document.getElementById('playerStandHidden')) {
+                document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+            }
             player.stand = true
             computer.stand = true
         }

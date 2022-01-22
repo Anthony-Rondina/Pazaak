@@ -13,13 +13,14 @@ let player = {
 let computer = {
     victory: 0,
     stand: false,
-    name: "",
+    name: "Opponent",
     value: 0,
     faceCard: '',
     reversable: false,
     score: 0
 }
-
+let bust = document.getElementById('bust')
+let randomCardSound = document.getElementById("randomCardSound")
 let togglePTurnLight = true; //Initializes player turn light toggle, player always goes first
 let pCard1Toggle = true;
 let pCard2Toggle = true;
@@ -133,7 +134,7 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     resetPlayerCards()
     clearComputerTable()
     resetComputerCards()
-    dealRandomPlayerCard()
+    dealRandomPlayerCardLoad()
     player.stand = false
     computer.stand = false
     standButton.disabled = false
@@ -148,6 +149,7 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     })
 }
 const clearTable = () => { // clears the board of victory lights and reset to player going first
+    playerStandSound.play()
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
     }
@@ -401,6 +403,7 @@ const dealPlayerCards = () => { //Assign and deal the players 4 Interferance car
 const useCard = (e) => {
     switch (e.target.id) {
         case 'play1Button':
+            playCardSound.play()
             player.score += playerCards[0].value;
             document.getElementById('playerScore').innerText = player.score;
             console.log(player.score)
@@ -425,6 +428,7 @@ const useCard = (e) => {
             }
             break;
         case 'play2Button':
+            playCardSound.play()
             player.score += playerCards[1].value;
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
@@ -448,6 +452,7 @@ const useCard = (e) => {
             }
             break;
         case 'play3Button':
+            playCardSound.play()
             player.score += playerCards[2].value;
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
@@ -471,6 +476,7 @@ const useCard = (e) => {
             }
             break;
         case 'play4Button':
+            playCardSound.play()
             player.score += playerCards[3].value;
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
@@ -614,7 +620,30 @@ const mainCardDeck = [
     "https://i.imgur.com/55EbVMw.png",
     "https://i.imgur.com/XTLqDNQ.png",
 ]
+
 //Creates a function that will assign and deal a random card to the player
+const dealRandomPlayerCardLoad = () => {
+
+    const index = Math.floor(Math.random() * mainCardDeck.length + 1);
+    //For loop to check played status of all 9 locations to place a card
+    for (let i = 0; i < playerRandomCardArray.length; i++) {
+        if (!playerRandomCardArray[i].played) {
+            document.getElementById('rPlayerCard' + [i]).src = mainCardDeck[index - 1];
+            playerRandomCardArray[i].played = true;
+            playerRandomCardArray[i].value = index;
+            player.score += index;
+            document.getElementById('playerScore').innerText = player.score;
+            if (player.score === 20) {
+                playerStand()
+            }
+            if (player.score > 20) {
+                bust.play()
+            }
+            return false
+        }
+    }
+}
+let randomCard1Sound = document.getElementById("randomCard1Sound")
 const dealRandomPlayerCard = () => {
     const index = Math.floor(Math.random() * mainCardDeck.length + 1);
 
@@ -628,6 +657,11 @@ const dealRandomPlayerCard = () => {
             document.getElementById('playerScore').innerText = player.score;
             if (player.score === 20) {
                 playerStand()
+            }
+            if (player.score <= 20) {
+                randomCard1Sound.play()
+            } else {
+                bust.play()
             }
             return false
         }
@@ -693,6 +727,7 @@ const computerRandomCardArray = [{
 
 //Creates a function that will assign and deal a random card to the player
 const dealRandomComputerCard = () => {
+    randomCardSound.play()
     const index = Math.floor(Math.random() * mainCardDeck.length + 1);
 
     //For loop to check played status of all 9 locations to place a card
@@ -703,6 +738,9 @@ const dealRandomComputerCard = () => {
             computerRandomCardArray[i].value = index;
             computer.score += index;
             document.getElementById('opponentScore').innerText = computer.score;
+            if (computer.score > 20) {
+                bust.play()
+            }
             return false
         }
     }
@@ -830,7 +868,7 @@ const computerChoice = () => {
 const computerDecide = () => {
     // Force scores to test certain conditions
     // player.score = 16;
-    // computer.score = 23;
+    // computer.score = 2;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
         console.log('computer sees that player has NOT stood')
@@ -1041,6 +1079,7 @@ const computerPlayCard = () => {
     for (let i = 0; i < 4; i++) {
         if (!computerCards[i].played) {
             if (computerCards[i].value + computer.score === 20 || computerCards[i].value + computer.score === 19 || computerCards[i].value + computer.score === 18) {
+                playCardSound.play()
                 console.log("computer found a card to play")
                 computer.score += computerCards[i].value;
                 console.log('computer score is = ', computer.score)
@@ -1076,6 +1115,7 @@ const computerPlayCardStand = () => {
     for (let i = 0; i < 4; i++) {
         if (!computerCards[i].played) {
             if (computerCards[i].value + computer.score >= player.score && computerCards[i].value + computer.score <= 20) {
+                playCardSound.play()
                 document.getElementById('computerStandHidden').id = 'computerStandDisplay';
                 console.log("computer found a card to play")
                 console.log('computer will play card ', [i])
@@ -1106,7 +1146,11 @@ const computerPlayCardStand = () => {
     }
 }
 // creates a function that helps the computer decide to keep playing
-
+let computerWinRound = document.getElementById("computerWinRound")
+let computerWinGame = document.getElementById("computerWinGame")
+let playerWinRound = document.getElementById("playerWinRound")
+let playerWinGame = document.getElementById("playerWinGame")
+let tieSound = document.getElementById('tieSound')
 const checkScore = () => {
     play1Button.disabled = true
     play2Button.disabled = true
@@ -1121,10 +1165,13 @@ const checkScore = () => {
                 console.log("Computer Wins with the higher score!", computer.score, player.score)
                 toggleCWin()
                 if (computer.victory === 3) {
+                    computerWinGame.play()
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
                     document.getElementById('messageButton').onclick = newGame;
+                } else {
+                    computerWinRound.play()
                 }
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
@@ -1134,10 +1181,13 @@ const checkScore = () => {
                 console.log("Player wins with the higher score!", computer.score, player.score)
                 togglePWin()
                 if (player.victory === 3) {
+                    playerWinGame.play()
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
                     document.getElementById('messageButton').onclick = newGame;
+                } else {
+                    playerWinRound.play()
                 }
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
@@ -1146,10 +1196,13 @@ const checkScore = () => {
             } else if (player.score > computer.score && player.score > 20) {
                 toggleCWin()
                 if (computer.victory === 3) {
+                    computerWinGame.play()
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
                     document.getElementById('messageButton').onclick = newGame;
+                } else {
+                    computerWinRound.play()
                 }
                 console.log('Computer wins by player going over!', computer.score, player.score)
                 console.log(player.score, computer.score)
@@ -1160,10 +1213,13 @@ const checkScore = () => {
             } else if (computer.score > player.score && computer.score > 20) {
                 togglePWin()
                 if (player.victory === 3) {
+                    playerWinGame.play()
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
                     document.getElementById('messageButton').onclick = newGame;
+                } else {
+                    playerWinRound.play()
                 }
                 console.log('Player wins by computer going over!', computer.score, player.score)
                 console.log(player.score, computer.score)
@@ -1172,6 +1228,7 @@ const checkScore = () => {
                 document.getElementById('messageButton').innerHTML = 'Next Round'
                 document.getElementById('messageButton').onclick = clearTable;
             } else if (player.score === computer.score) {
+                tieSound.play()
                 console.log('Its a tie!', computer.score, player.score)
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = "The Round is a Tie!"
@@ -1226,6 +1283,7 @@ const endComputerTurn = () => {
     } else {
         console.log('player hasnt stood, releasing player.')
         dealRandomPlayerCard()
+
         untogglePlayCards()
         toggleTurn()
         endTurnButton.disabled = false;
@@ -1234,7 +1292,9 @@ const endComputerTurn = () => {
 
 }
 
+let playerStandSound = document.getElementById("standSound")
 const playerStand = () => {
+    playerStandSound.play()
     document.getElementById('playerStandHidden').id = 'playerStandDisplay';
     setTimeout(() => {
         standButton.disabled = true
@@ -1279,6 +1339,7 @@ const computerStand = () => {
 
 // function that toggles the background audio
 let audioElement = document.getElementById("myAudio");
+let playCardSound = document.getElementById('playCard')
 const togglePlay = () => {
     if (audioElement.paused) {
         audioElement.play();
@@ -1301,7 +1362,7 @@ const subPic = () => {
             console.log('pick-1')
             break;
         case 0:
-            carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+            carouselPic.src = "https://i.imgur.com/Es01tJd.png"
             console.log('pick-0')
             break;
         case 1:
@@ -1320,11 +1381,11 @@ const addPic = () => {
     switch (carouselCounter) {
         case 3:
             carouselCounter = 0
-            carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+            carouselPic.src = "https://i.imgur.com/Es01tJd.png"
             console.log('pick-1')
             break;
         case 0:
-            carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+            carouselPic.src = "https://i.imgur.com/Es01tJd.png"
             console.log('pick-0')
             break;
         case 1:
@@ -1359,7 +1420,11 @@ document.getElementById('play1Button').onclick = useCard;
 document.getElementById('play2Button').onclick = useCard;
 document.getElementById('play3Button').onclick = useCard;
 document.getElementById('play4Button').onclick = useCard;
-document.getElementById('endTurnButton').onclick = endPlayerTurn;
+let endPlayerTurnButton = document.getElementById('endTurnButton')
+endTurnButton.addEventListener('click', (evt) => {
+    endPlayerTurn()
+    playerStandSound.play()
+})
 document.getElementById('standButton').onclick = playerStand;
 document.getElementById('messageButton').onclick = clearTable;
 document.getElementById('tutorial').onclick = modal;

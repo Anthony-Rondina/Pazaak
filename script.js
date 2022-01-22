@@ -1046,7 +1046,7 @@ const computerPlayCard = () => {
                 console.log('computer score is = ', computer.score)
                 console.log('computer plays ', computerCards[i].value, 'making ', computerCards[i].value + computer.score)
                 untogglePlayCards()
-                toggleTurn()
+                // toggleTurn()
                 endTurnButton.disabled = false;
                 computer.stand = true;
                 computerCards[i].value = 0
@@ -1083,7 +1083,7 @@ const computerPlayCardStand = () => {
                 console.log('computer plays ', computerCards[i].value + computer.score)
                 computerCards[i].value = 0
                 untogglePlayCards()
-                toggleTurn()
+                // toggleTurn()
                 endTurnButton.disabled = false;
                 computer.stand = true;
                 computerCards[i].played = true;
@@ -1342,6 +1342,10 @@ const closeCarousel = () => {
 
 }
 // Setting event listeners for the buttons
+const play = document.querySelector("#cantina")
+play.addEventListener('click', (evt) => {
+    togglePlay()
+})
 const carouselDiv = document.querySelector('.carousel')
 const carouselPic = document.getElementById("cPic")
 const carouselLeft = document.getElementById("left").onclick = subPic

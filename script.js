@@ -829,7 +829,7 @@ const computerChoice = () => {
 // this function is the computer AI for how to play the game
 const computerDecide = () => {
     // Force scores to test certain conditions
-    // player.score = 29;
+    // player.score = 16;
     // computer.score = 23;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
@@ -1083,7 +1083,10 @@ const computerPlayCardStand = () => {
                 console.log('computer plays ', computerCards[i].value + computer.score)
                 computerCards[i].value = 0
                 untogglePlayCards()
-                // toggleTurn()
+                if (!player.stand) {
+                    toggleTurn()
+                }
+
                 endTurnButton.disabled = false;
                 computer.stand = true;
                 computerCards[i].played = true;

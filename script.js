@@ -177,7 +177,7 @@ const clearTable = () => { // clears the board of victory lights and reset to pl
     }
 }
 //Creates an array of all the Playing Card Faces
-const choices = [
+const interferenceDeck = [
     "https://i.imgur.com/gSLqvS8.png",
     "https://i.imgur.com/LsNCo4C.png",
     "https://i.imgur.com/O7UL50l.png",
@@ -250,80 +250,80 @@ const computerCards = [{
 ]
 //This function randomly assigns the computer's 4 cards and other values
 const dealComputerCards = () => {
-    for (let step = 0; step < 4; step++) {
+    for (let i = 0; i < 4; i++) {
         const index = Math.floor(Math.random() * 12);
         switch (index) {
             case 0:
-                computerCards[step].value = 1;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = 1;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 1:
-                computerCards[step].value = 2;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = 2;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 2:
-                computerCards[step].value = 3;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = 3;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 3:
-                computerCards[step].value = 4;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = 4;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 4:
-                computerCards[step].value = 5;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = 5;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 5:
-                computerCards[step].value = 6;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = 6;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 6:
-                computerCards[step].value = -1;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = -1;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 7:
-                computerCards[step].value = -2;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = -2;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 8:
-                computerCards[step].value = -3;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = -3;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 9:
-                computerCards[step].value = -4;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = -4;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 10:
-                computerCards[step].value = -5;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = -5;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 11:
-                computerCards[step].value = -6;
-                computerCards[step].faceCard = choices[index]
+                computerCards[i].value = -6;
+                computerCards[i].faceCard = interferenceDeck[index]
                 //DELETE THIS WHEN AI IS IN
-                document.getElementById("computerCard" + [step]).src = "https://i.imgur.com/BrguC3y.png"
+                document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
         }
     }
@@ -331,68 +331,68 @@ const dealComputerCards = () => {
 // This function uses a switch to assign information to the playerCards array
 const dealPlayerCards = () => { //Assign and deal the players 4 Interferance cards
 
-    for (let step = 0; step < 4; step++) {
+    for (let i = 0; i < 4; i++) {
         const index = Math.floor(Math.random() * 12);
         switch (index) {
             case 0:
-                playerCards[step].value = 1;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = 1;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 1:
-                playerCards[step].value = 2;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = 2;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 2:
-                playerCards[step].value = 3;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = 3;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 3:
-                playerCards[step].value = 4;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = 4;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 4:
-                playerCards[step].value = 5;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = 5;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 5:
-                playerCards[step].value = 6;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = 6;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 6:
-                playerCards[step].value = -1;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = -1;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 7:
-                playerCards[step].value = -2;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = -2;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 8:
-                playerCards[step].value = -3;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = -3;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 9:
-                playerCards[step].value = -4;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = -4;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 10:
-                playerCards[step].value = -5;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = -5;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
             case 11:
-                playerCards[step].value = -6;
-                document.getElementById('playerCard' + [step]).src = choices[index];
-                playerCards[step].faceCard = choices[index];
+                playerCards[i].value = -6;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
+                playerCards[i].faceCard = interferenceDeck[index];
                 break;
         }
     }
@@ -602,27 +602,26 @@ const playerRandomCardArray = [{
     played: false
 }
 ]
-
+const mainCardDeck = [
+    "https://i.imgur.com/UBDy2YH.png",
+    "https://i.imgur.com/8aszzAi.png",
+    "https://i.imgur.com/TGbJOQ9.png",
+    "https://i.imgur.com/Gwfca9H.png",
+    "https://i.imgur.com/I6Sh25X.png",
+    "https://i.imgur.com/o1mvyTO.png",
+    "https://i.imgur.com/6f159KV.png",
+    "https://i.imgur.com/LsrBp2N.png",
+    "https://i.imgur.com/55EbVMw.png",
+    "https://i.imgur.com/XTLqDNQ.png",
+]
 //Creates a function that will assign and deal a random card to the player
 const dealRandomPlayerCard = () => {
-    const choices = [
-        "https://i.imgur.com/UBDy2YH.png",
-        "https://i.imgur.com/8aszzAi.png",
-        "https://i.imgur.com/TGbJOQ9.png",
-        "https://i.imgur.com/Gwfca9H.png",
-        "https://i.imgur.com/I6Sh25X.png",
-        "https://i.imgur.com/o1mvyTO.png",
-        "https://i.imgur.com/6f159KV.png",
-        "https://i.imgur.com/LsrBp2N.png",
-        "https://i.imgur.com/55EbVMw.png",
-        "https://i.imgur.com/XTLqDNQ.png",
-    ]
-    const index = Math.floor(Math.random() * choices.length + 1);
+    const index = Math.floor(Math.random() * mainCardDeck.length + 1);
 
     //For loop to check played status of all 9 locations to place a card
     for (let i = 0; i < playerRandomCardArray.length; i++) {
         if (!playerRandomCardArray[i].played) {
-            document.getElementById('rPlayerCard' + [i]).src = choices[index - 1];
+            document.getElementById('rPlayerCard' + [i]).src = mainCardDeck[index - 1];
             playerRandomCardArray[i].played = true;
             playerRandomCardArray[i].value = index;
             player.score += index;
@@ -694,24 +693,12 @@ const computerRandomCardArray = [{
 
 //Creates a function that will assign and deal a random card to the player
 const dealRandomComputerCard = () => {
-    const choices = [
-        "https://i.imgur.com/UBDy2YH.png",
-        "https://i.imgur.com/8aszzAi.png",
-        "https://i.imgur.com/TGbJOQ9.png",
-        "https://i.imgur.com/Gwfca9H.png",
-        "https://i.imgur.com/I6Sh25X.png",
-        "https://i.imgur.com/o1mvyTO.png",
-        "https://i.imgur.com/6f159KV.png",
-        "https://i.imgur.com/LsrBp2N.png",
-        "https://i.imgur.com/55EbVMw.png",
-        "https://i.imgur.com/XTLqDNQ.png",
-    ]
-    const index = Math.floor(Math.random() * choices.length + 1);
+    const index = Math.floor(Math.random() * mainCardDeck.length + 1);
 
     //For loop to check played status of all 9 locations to place a card
     for (let i = 0; i < computerRandomCardArray.length; i++) {
         if (!computerRandomCardArray[i].played) {
-            document.getElementById('rComputerCard' + [i]).src = choices[index - 1];
+            document.getElementById('rComputerCard' + [i]).src = mainCardDeck[index - 1];
             computerRandomCardArray[i].played = true;
             computerRandomCardArray[i].value = index;
             computer.score += index;
@@ -723,10 +710,6 @@ const dealRandomComputerCard = () => {
 
 //Creates a function that gives the Computer AI on when to play their cards or stand
 const computerChoice = () => {
-    const result = (i) => {
-        return computerCards[i] + computer.score
-    }
-
     console.log(computer.score, computerCards[0].value, computerCards[1].value, computerCards[2].value, computerCards[3].value)
     switch (computer.score) {
         case 1:
@@ -927,6 +910,7 @@ const computerDecide = () => {
                 console
                 setTimeout(() => {
                     computer.stand = true
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
                 }, 800)
                 // setTimeout(() => {
                 //     console.log('computer finishes considering')
@@ -1067,7 +1051,8 @@ const computerPlayCard = () => {
                 computer.stand = true;
                 computerCards[i].value = 0
                 computerCards[i].played = true;
-                // document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                //line 1072 may cause breaks
+                document.getElementById('computerStandHidden').id = 'computerStandDisplay';
                 if (player.stand && computer.stand) {
                     checkScore()
                 }
@@ -1288,8 +1273,10 @@ const computerStand = () => {
         }
     }
 }
+
+// function that toggles the background audio
 let audioElement = document.getElementById("myAudio");
-function togglePlay() {
+const togglePlay = () => {
     if (audioElement.paused) {
         audioElement.play();
     }
@@ -1297,10 +1284,69 @@ function togglePlay() {
         audioElement.pause();
     }
 };
-const visit = () => {
-    window.open("https://starwars.fandom.com/wiki/Pazaak/Legends", '_blank')
+const modal = () => {
+    carouselDiv.classList.remove("hidden")
+}
+let carouselCounter = 0
+const subPic = () => {
+    carouselCounter--
+    console.log(carouselCounter)
+    switch (carouselCounter) {
+        case -1:
+            carouselCounter = 2
+            carouselPic.src = "https://i.imgur.com/tAMXHIm.png"
+            console.log('pick-1')
+            break;
+        case 0:
+            carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+            console.log('pick-0')
+            break;
+        case 1:
+            carouselPic.src = "https://i.imgur.com/QhQvYmB.png"
+            console.log('pick1')
+            break;
+        case 2:
+            carouselPic.src = "https://i.imgur.com/tAMXHIm.png"
+            console.log('pick2')
+            break;
+    }
+}
+const addPic = () => {
+    carouselCounter++
+    console.log(carouselCounter)
+    switch (carouselCounter) {
+        case 3:
+            carouselCounter = 0
+            carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+            console.log('pick-1')
+            break;
+        case 0:
+            carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+            console.log('pick-0')
+            break;
+        case 1:
+            carouselPic.src = "https://i.imgur.com/QhQvYmB.png"
+            console.log('pick1')
+            break;
+        case 2:
+            carouselPic.src = "https://i.imgur.com/tAMXHIm.png"
+            console.log('pick2')
+            break;
+    }
+}
+
+const closeCarousel = () => {
+    carouselDiv.classList.add("hidden")
+    carouselCounter = 0
+    carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+
 }
 // Setting event listeners for the buttons
+const carouselDiv = document.querySelector('.carousel')
+const carouselPic = document.getElementById("cPic")
+const carouselLeft = document.getElementById("left").onclick = subPic
+const carouselRight = document.getElementById("right").onclick = addPic
+const xButton = document.getElementById('closeCarousel').onclick = closeCarousel
 document.querySelector('#newGame').onclick = newGame;
 document.getElementById('play1Button').onclick = useCard;
 document.getElementById('play2Button').onclick = useCard;
@@ -1309,7 +1355,7 @@ document.getElementById('play4Button').onclick = useCard;
 document.getElementById('endTurnButton').onclick = endPlayerTurn;
 document.getElementById('standButton').onclick = playerStand;
 document.getElementById('messageButton').onclick = clearTable;
-document.getElementById('tutorial').onclick = visit;
+document.getElementById('tutorial').onclick = modal;
 // document.getElementById('testCStand').onclick = computerStand;
 // document.getElementById('nextRound').onclick = junk;
 // document.querySelector('#testComputerWins').onclick = toggleCWin;
@@ -1333,3 +1379,4 @@ startUp()
 setTimeout(() => {
     newGame()
 }, 500)
+

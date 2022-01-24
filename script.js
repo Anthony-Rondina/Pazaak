@@ -19,6 +19,7 @@ let computer = {
     reversable: false,
     score: 0
 }
+let newGameButton = document.querySelector('#newGame')
 let bust = document.getElementById('bust')
 let randomCardSound = document.getElementById("randomCardSound")
 let togglePTurnLight = true; //Initializes player turn light toggle, player always goes first
@@ -104,6 +105,7 @@ const toggleCWin = () => {
 }
 
 const newGame = () => { // clears the board of victory lights and reset to player going first
+    newGameButton.disabled = false
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
     }
@@ -134,7 +136,7 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     resetPlayerCards()
     clearComputerTable()
     resetComputerCards()
-    dealRandomPlayerCardLoad()
+    dealRandomPlayerCard()
     player.stand = false
     computer.stand = false
     standButton.disabled = false
@@ -258,73 +260,64 @@ const dealComputerCards = () => {
             case 0:
                 computerCards[i].value = 1;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
+
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 1:
                 computerCards[i].value = 2;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 2:
                 computerCards[i].value = 3;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 3:
                 computerCards[i].value = 4;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 4:
                 computerCards[i].value = 5;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 5:
                 computerCards[i].value = 6;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 6:
                 computerCards[i].value = -1;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 7:
                 computerCards[i].value = -2;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
+
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 8:
                 computerCards[i].value = -3;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
+
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 9:
                 computerCards[i].value = -4;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 10:
                 computerCards[i].value = -5;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 11:
                 computerCards[i].value = -6;
                 computerCards[i].faceCard = interferenceDeck[index]
-                //DELETE THIS WHEN AI IS IN
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
         }
@@ -622,27 +615,6 @@ const mainCardDeck = [
 ]
 
 //Creates a function that will assign and deal a random card to the player
-const dealRandomPlayerCardLoad = () => {
-
-    const index = Math.floor(Math.random() * mainCardDeck.length + 1);
-    //For loop to check played status of all 9 locations to place a card
-    for (let i = 0; i < playerRandomCardArray.length; i++) {
-        if (!playerRandomCardArray[i].played) {
-            document.getElementById('rPlayerCard' + [i]).src = mainCardDeck[index - 1];
-            playerRandomCardArray[i].played = true;
-            playerRandomCardArray[i].value = index;
-            player.score += index;
-            document.getElementById('playerScore').innerText = player.score;
-            if (player.score === 20) {
-                playerStand()
-            }
-            if (player.score > 20) {
-                bust.play()
-            }
-            return false
-        }
-    }
-}
 let randomCard1Sound = document.getElementById("randomCard1Sound")
 const dealRandomPlayerCard = () => {
     const index = Math.floor(Math.random() * mainCardDeck.length + 1);
@@ -1402,7 +1374,7 @@ const addPic = () => {
 const closeCarousel = () => {
     carouselDiv.classList.add("hidden")
     carouselCounter = 0
-    carouselPic.src = "https://i.imgur.com/M3qcxqC.png"
+    carouselPic.src = "https://i.imgur.com/Es01tJd.png"
 
 }
 // Setting event listeners for the buttons
@@ -1415,7 +1387,7 @@ const carouselPic = document.getElementById("cPic")
 const carouselLeft = document.getElementById("left").onclick = subPic
 const carouselRight = document.getElementById("right").onclick = addPic
 const xButton = document.getElementById('closeCarousel').onclick = closeCarousel
-document.querySelector('#newGame').onclick = newGame;
+newGameButton.onclick = newGame;
 document.getElementById('play1Button').onclick = useCard;
 document.getElementById('play2Button').onclick = useCard;
 document.getElementById('play3Button').onclick = useCard;
@@ -1445,10 +1417,11 @@ const startUp = () => {
     play4Button.disabled = true
     endTurnButton.disabled = true;
     standButton.disabled = true
+    newGameButton.disabled = true
+    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+    document.getElementById('winMessage').innerHTML = 'Welcome to Pazaak!'
+    document.getElementById('messageButton').innerHTML = 'New Game'
+    document.getElementById('messageButton').onclick = newGame;
 }
 startUp()
-// calls new game function so new game starts when page is loaded
-setTimeout(() => {
-    newGame()
-}, 500)
 

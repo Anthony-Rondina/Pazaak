@@ -274,6 +274,10 @@ p {
     border-color: green;
     color: white;
 }
+#newGame:disabled {
+    color:grey;
+    border-color: grey;
+}
 #playerScore {
     text-align: center;
     color: white;
@@ -732,7 +736,7 @@ display: none;
     width: 30px;
     border-radius: 50%;
     cursor: pointer;
-  align-items: baseline;
+    align-items: baseline;
 }
 
 .hidden {

@@ -585,7 +585,7 @@ p, span {
     border: solid 5px rgba(112, 112, 113, 0.9);
     width: 150px;
     height: 80px;
-    left: 25px;
+    left: 37px;
     top: 335px;
     align-items: center;
     justify-content: center;
@@ -750,7 +750,7 @@ p, span {
     border-color: green;
     color: white; 
 }
-#buy1.disabled{
+#buy1:disabled{
     color:grey;
     border-color: grey;
 }
@@ -772,7 +772,7 @@ p, span {
     border-color: green;
     color: white; 
 }
-#buy2.disabled{
+#buy2:disabled{
     color:grey;
     border-color: grey;
 }
@@ -794,7 +794,7 @@ p, span {
     border-color: green;
     color: white; 
 }
-#buy3.disabled{
+#buy3:disabled{
     color:grey;
     border-color: grey;
 }

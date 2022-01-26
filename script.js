@@ -2,7 +2,7 @@
 let player = {
     victory: 0,
     stand: false,
-    name: "",
+    name: "Player",
     value: 0,
     faceCard: '',
     reversable: false,
@@ -20,10 +20,11 @@ let computer = {
     stand: false,
     name: "Opponent",
     value: 0,
-    faceCard: '',
-    reversable: false,
     score: 0
 }
+let buy1Button = document.getElementById("buy1")
+let buy2Button = document.getElementById("buy2")
+let buy3Button = document.getElementById("buy3")
 const closeShopButton = document.getElementById("closeShop")
 const shopDiv = document.getElementById('shopDiv')
 shopDiv.style.display = "none"
@@ -866,7 +867,7 @@ const computerChoice = () => {
 // this function is the computer AI for how to play the game
 const computerDecide = () => {
     // Force scores to test certain conditions
-    player.score = 26;
+    // player.score = 20;
     // computer.score = 29;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
@@ -1431,12 +1432,92 @@ const closeShop = () => {
     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
     shopDiv.style.display = "none"
 }
+const payDebt = () => {
+    if (playerInput.value >= player.credits) {
+        alert("You can't empty your account. Pay another amount.")
+    } else if (playerInput.value > player.debt) {
+        alert("Don't pay more than what you owe!")
+    } else {
+        player.credits -= playerInput.value
+        player.debt -= playerInput.value
+        playerCredits.innerText = player.credits
+        playerDebt.innerText = player.debt
+
+        if (player.debt === 0) {
+            payDebtButton.disabled = true
+        }
+    }
+}
+const wager = () => {
+    if (document.getElementById('messageBackgroundHidden')) {
+        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+    }
+    if (player.credits === 0) {
+        player.credits += 1000
+        player.debt += 1000
+    }
+    playerCredits.textContent = player.credits
+    playerDebt.innerText = player.debt
+    if (player.debt > 0) {
+        payDebtButton.disabled = false
+    }
+    payDebtButton.onclick = payDebt
+    player.wager = 0
+    playerInput.value = ""
+    playerInput.classList.remove("hidden")
+    enterButton.classList.add("hidden")
+    begin.classList.remove("hidden")
+    playerInput.placeholder = "Enter Amount"
+    document.getElementById('winMessage').innerHTML = 'Enter Wager or Pay Debt:'
+    begin.innerHTML = 'New Game'
+    begin.onclick = inside
+    shopButton.style.display = "block"
+    payDebtButton.style.display = "block"
+
+}
+
+const buy1 = () => {
+    if (player.debt > 0) {
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 500) {
+        alert("You cannot clean out your credits account!")
+    } else if (player.credits > 500) {
+        player.credits -= 500
+        player.bonus1 = true
+        playerCredits.textContent = player.credits
+        buy1Button.disabled = true
+    }
+}
+const buy2 = () => {
+    if (player.debt > 0) {
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 5000) {
+        alert("You cannot clean out your credits account!")
+    } else if (player.credits > 5000) {
+        player.credits -= 5000
+        player.bonus2 = true
+        playerCredits.textContent = player.credits
+        buy2Button.disabled = true
+    }
+}
+const buy3 = () => {
+    if (player.debt > 0) {
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 20000) {
+        alert("You cannot clean out your credits account!")
+    } else if (player.credits > 20000) {
+        player.credits -= 20000
+        player.bonus3 = true
+        playerCredits.textContent = player.credits
+        buy3Button.disabled = true
+    }
+}
 const carouselDiv = document.querySelector('.carousel')
 const carouselPic = document.getElementById("cPic")
 const carouselLeft = document.getElementById("left").onclick = subPic
 const carouselRight = document.getElementById("right").onclick = addPic
 const xButton = document.getElementById('closeCarousel').onclick = closeCarousel
-newGameButton.onclick = newGame;
+newGameButton.onclick = wager;
 document.getElementById('play1Button').onclick = useCard;
 document.getElementById('play2Button').onclick = useCard;
 document.getElementById('play3Button').onclick = useCard;
@@ -1446,6 +1527,10 @@ endTurnButton.addEventListener('click', (evt) => {
     endPlayerTurn()
     playerStandSound.play()
 })
+
+buy1Button.onclick = buy1
+buy2Button.onclick = buy2
+buy3Button.onclick = buy3
 document.getElementById('standButton').onclick = playerStand;
 document.getElementById('messageButton').onclick = clearTable;
 document.getElementById('tutorial').onclick = modal;
@@ -1460,8 +1545,10 @@ closeShopButton.onclick = closeShop
 // document.getElementById('testCDeal').onclick = dealRandomComputerCard;
 // document.getElementById('testComputerUseCard').onclick = endComputerTurn;
 const setNames = () => {
-    player.name = playerInput.value;
-    playerName.textContent = player.name
+    if (playerInput.value.length) {
+        player.name = playerInput.value;
+        playerName.textContent = player.name
+    }
     let index = Math.floor(Math.random() * computerNames.length)
     computer.name = computerNames[index]
     opponentName.textContent = computer.name
@@ -1507,45 +1594,9 @@ const inside = () => {
     }
 }
 
-const payDebt = () => {
-    if (playerInput.value >= player.credits) {
-        alert("You can't empty your account. Pay another amount.")
-    } else {
-        player.credits -= playerInput.value
-        player.debt -= playerInput.value
-        playerCredits.innerText = player.credits
-        playerDebt.innerText = player.debt
 
-        if (player.debt === 0) {
-            payDebtButton.disabled = true
-        }
-    }
-}
 
-const wager = () => {
-    if (player.credits === 0) {
-        player.credits += 1000
-        player.debt += 1000
-    }
-    playerCredits.textContent = player.credits
-    playerDebt.innerText = player.debt
-    if (player.debt > 0) {
-        payDebtButton.disabled = false
-    }
-    payDebtButton.onclick = payDebt
-    player.wager = 0
-    playerInput.value = ""
-    playerInput.classList.remove("hidden")
-    enterButton.classList.add("hidden")
-    begin.classList.remove("hidden")
-    playerInput.placeholder = "Enter Amount"
-    document.getElementById('winMessage').innerHTML = 'Enter Wager or Pay Debt:'
-    begin.innerHTML = 'New Game'
-    begin.onclick = inside
-    shopButton.style.display = "block"
-    payDebtButton.style.display = "block"
 
-}
 startUp()
 
 const computerNames = [

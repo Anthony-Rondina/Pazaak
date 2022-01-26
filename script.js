@@ -7,7 +7,7 @@ let player = {
     faceCard: '',
     reversable: false,
     score: 0,
-    credits: 1000,
+    credits: 1500,
     debt: 0,
     wager: 0,
     bonus1: false,
@@ -1453,8 +1453,8 @@ const wager = () => {
         document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
     }
     if (player.credits === 0) {
-        player.credits += 1000
-        player.debt += 1000
+        player.credits += 1500
+        player.debt += 1500
     }
     playerCredits.textContent = player.credits
     playerDebt.innerText = player.debt
@@ -1480,7 +1480,7 @@ const buy1 = () => {
     if (player.debt > 0) {
         alert("You must pay your debts before you can buy from the Shop!")
     } else if (player.credits <= 500) {
-        alert("You cannot clean out your credits account!")
+        alert("Not enough Credits! You must have some credits left to wager.")
     } else if (player.credits > 500) {
         player.credits -= 500
         player.bonus1 = true
@@ -1492,7 +1492,7 @@ const buy2 = () => {
     if (player.debt > 0) {
         alert("You must pay your debts before you can buy from the Shop!")
     } else if (player.credits <= 5000) {
-        alert("You cannot clean out your credits account!")
+        alert("Not enough Credits! You must have some credits left to wager.")
     } else if (player.credits > 5000) {
         player.credits -= 5000
         player.bonus2 = true
@@ -1504,7 +1504,7 @@ const buy3 = () => {
     if (player.debt > 0) {
         alert("You must pay your debts before you can buy from the Shop!")
     } else if (player.credits <= 20000) {
-        alert("You cannot clean out your credits account!")
+        alert("Not enough Credits! You must have some credits left to wager.")
     } else if (player.credits > 20000) {
         player.credits -= 20000
         player.bonus3 = true
@@ -1618,5 +1618,4 @@ const computerNames = [
     "Count Dooku",
     "Watto",
     "Revan",
-
 ]

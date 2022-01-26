@@ -6,8 +6,13 @@ let player = {
     value: 0,
     faceCard: '',
     reversable: false,
-    score: 0
-
+    score: 0,
+    credits: 1000,
+    debt: 0,
+    wager: 0,
+    bonus1: false,
+    bonus2: false,
+    bonus3: false
 }
 //initate an object for the computer
 let computer = {
@@ -19,6 +24,22 @@ let computer = {
     reversable: false,
     score: 0
 }
+const closeShopButton = document.getElementById("closeShop")
+const shopDiv = document.getElementById('shopDiv')
+shopDiv.style.display = "none"
+const playerCredits = document.getElementById("currentCredits")
+const playerDebt = document.getElementById("currentDebt")
+const begin = document.getElementById('begin')
+begin.classList.add("hidden")
+let shopButton = document.getElementById("shop")
+shopButton.style.display = "none"
+let payDebtButton = document.getElementById("payDebt")
+payDebtButton.style.display = "none"
+payDebtButton.disabled = true
+let enterButton = document.getElementById('messageButton')
+let opponentName = document.getElementById('opponentName')
+let playerInput = document.getElementById("enterName")
+let playerName = document.getElementById("playerName")
 let newGameButton = document.querySelector('#newGame')
 let bust = document.getElementById('bust')
 let randomCardSound = document.getElementById("randomCardSound")
@@ -105,6 +126,12 @@ const toggleCWin = () => {
 }
 
 const newGame = () => { // clears the board of victory lights and reset to player going first
+    if (player.bonus1) {
+        playerName.style.color = "yellow"
+    }
+    if (player.bonus3) {
+        playerName.textContent += " 👑"
+    }
     newGameButton.disabled = false
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
@@ -839,7 +866,7 @@ const computerChoice = () => {
 // this function is the computer AI for how to play the game
 const computerDecide = () => {
     // Force scores to test certain conditions
-    // player.score = 16;
+    player.score = 26;
     // computer.score = 29;
     //starting if statemtents based on the player not standing
     if (!player.stand) {
@@ -1141,7 +1168,7 @@ const checkScore = () => {
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
-                    document.getElementById('messageButton').onclick = newGame;
+                    document.getElementById('messageButton').onclick = wager;
                 } else {
                     computerWinRound.play()
                 }
@@ -1153,11 +1180,18 @@ const checkScore = () => {
                 console.log("Player wins with the higher score!", computer.score, player.score)
                 togglePWin()
                 if (player.victory === 3) {
+                    if (player.bonus2) {
+                        player.credits += player.wager * 5
+                    } else {
+                        player.credits += player.wager * 2
+                    }
+                    player.wager = 0
+                    playerCredits.textContent = player.credits
                     playerWinGame.play()
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
-                    document.getElementById('messageButton').onclick = newGame;
+                    document.getElementById('messageButton').onclick = wager;
                 } else {
                     playerWinRound.play()
                 }
@@ -1172,7 +1206,7 @@ const checkScore = () => {
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
-                    document.getElementById('messageButton').onclick = newGame;
+                    document.getElementById('messageButton').onclick = wager;
                 } else {
                     computerWinRound.play()
                 }
@@ -1185,11 +1219,18 @@ const checkScore = () => {
             } else if (computer.score > player.score && computer.score > 20) {
                 togglePWin()
                 if (player.victory === 3) {
+                    if (player.bonus2) {
+                        player.credits += player.wager * 5
+                    } else {
+                        player.credits += player.wager * 2
+                    }
+                    player.wager = 0
+                    playerCredits.textContent = player.credits
                     playerWinGame.play()
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
                     document.getElementById('messageButton').innerHTML = 'New Game'
-                    document.getElementById('messageButton').onclick = newGame;
+                    document.getElementById('messageButton').onclick = wager;
                 } else {
                     playerWinRound.play()
                 }
@@ -1382,6 +1423,14 @@ const play = document.querySelector("#cantina")
 play.addEventListener('click', (evt) => {
     togglePlay()
 })
+const openShop = () => {
+    document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
+    shopDiv.style.display = "flex"
+}
+const closeShop = () => {
+    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+    shopDiv.style.display = "none"
+}
 const carouselDiv = document.querySelector('.carousel')
 const carouselPic = document.getElementById("cPic")
 const carouselLeft = document.getElementById("left").onclick = subPic
@@ -1400,6 +1449,8 @@ endTurnButton.addEventListener('click', (evt) => {
 document.getElementById('standButton').onclick = playerStand;
 document.getElementById('messageButton').onclick = clearTable;
 document.getElementById('tutorial').onclick = modal;
+shopButton.onclick = openShop
+closeShopButton.onclick = closeShop
 // document.getElementById('testCStand').onclick = computerStand;
 // document.getElementById('nextRound').onclick = junk;
 // document.querySelector('#testComputerWins').onclick = toggleCWin;
@@ -1408,7 +1459,15 @@ document.getElementById('tutorial').onclick = modal;
 // document.getElementById('testDeal').onclick = dealRandomPlayerCard;
 // document.getElementById('testCDeal').onclick = dealRandomComputerCard;
 // document.getElementById('testComputerUseCard').onclick = endComputerTurn;
-
+const setNames = () => {
+    player.name = playerInput.value;
+    playerName.textContent = player.name
+    let index = Math.floor(Math.random() * computerNames.length)
+    computer.name = computerNames[index]
+    opponentName.textContent = computer.name
+    enterButton.classList.add("hidden")
+    wager()
+}
 //startup fuction disables buttons
 const startUp = () => {
     play1Button.disabled = true
@@ -1420,8 +1479,93 @@ const startUp = () => {
     newGameButton.disabled = true
     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
     document.getElementById('winMessage').innerHTML = 'Welcome to Pazaak!'
-    document.getElementById('messageButton').innerHTML = 'New Game'
-    document.getElementById('messageButton').onclick = newGame;
+    enterButton.innerHTML = 'Continue'
+    enterButton.onclick = setNames
+}
+
+const inside = () => {
+    if (isNaN(playerInput.value)) {
+        alert("Not a number! Please input a number.")
+        console.log("how many times am i stated?")
+    } else {
+        if (playerInput.value > player.credits) {
+            alert("Not enough credits! Please enter again.")
+            console.log("how many times am i stated?")
+        } else {
+            console.log("how many times am i stated?")
+            player.wager = playerInput.value
+            player.credits -= player.wager
+            playerInput.classList.add("hidden")
+            shopButton.style.display = "none"
+            payDebtButton.style.display = "none"
+            begin.classList.add('hidden')
+            enterButton.classList.remove("hidden")
+            playerCredits.textContent = player.credits
+            playerDebt.textContent = player.debt
+            newGame()
+        }
+    }
+}
+
+const payDebt = () => {
+    if (playerInput.value >= player.credits) {
+        alert("You can't empty your account. Pay another amount.")
+    } else {
+        player.credits -= playerInput.value
+        player.debt -= playerInput.value
+        playerCredits.innerText = player.credits
+        playerDebt.innerText = player.debt
+
+        if (player.debt === 0) {
+            payDebtButton.disabled = true
+        }
+    }
+}
+
+const wager = () => {
+    if (player.credits === 0) {
+        player.credits += 1000
+        player.debt += 1000
+    }
+    playerCredits.textContent = player.credits
+    playerDebt.innerText = player.debt
+    if (player.debt > 0) {
+        payDebtButton.disabled = false
+    }
+    payDebtButton.onclick = payDebt
+    player.wager = 0
+    playerInput.value = ""
+    playerInput.classList.remove("hidden")
+    enterButton.classList.add("hidden")
+    begin.classList.remove("hidden")
+    playerInput.placeholder = "Enter Amount"
+    document.getElementById('winMessage').innerHTML = 'Enter Wager or Pay Debt:'
+    begin.innerHTML = 'New Game'
+    begin.onclick = inside
+    shopButton.style.display = "block"
+    payDebtButton.style.display = "block"
+
 }
 startUp()
 
+const computerNames = [
+    "Luke Skywalker",
+    "Boba Fett",
+    "Jabba The Hutt",
+    "Han Solo",
+    "Princess Leia",
+    "Chewbacca",
+    "Canderous Ordo",
+    "Darth Vader",
+    "Emperor Palpatine",
+    "Darth Bane",
+    "Mara Jade Skywalker",
+    "Jar Jar Binks",
+    "Yoda",
+    "Mace Windu",
+    "Jango Fett",
+    "Count Dooku",
+    "Watto",
+    "Revan",
+
+]

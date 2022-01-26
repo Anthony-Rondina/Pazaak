@@ -13,6 +13,36 @@
 <body>
     <!-- <div id="wrapper"> -->
     <div id="innerWrapper">
+
+        <div id="shopDiv">
+            <div id="shopName">
+                <h1>Shop</h1>
+            </div>
+            <div id="itemsAndButtonsDiv">
+                <div id="shopItems">
+                    <h2 id="bonus1">Yellow Name Text - 500 Credits</h2>
+                    <h2 id="bonus2">x5 Winning Multipler! - 5,000 Credits</h2>
+                    <h2 id="bonus3">👑 - 20,000 Credits</h2>
+                </div>
+                <div id="shopButtons">
+                    <button id="buy1">Buy!</button>
+                    <button id="buy2">Buy!</button>
+                    <button id="buy3">Buy!</button>
+                </div>
+            </div>
+            <button id="closeShop">Close Shop</button>
+        </div>
+        <div id="money">
+            <div>
+                <span>Credits:</span>
+                <span id="currentCredits">0</span>
+            </div>
+            <div>
+                <span>Debt:</span>
+                <span id="currentDebt">0</span>
+            </div>
+        </div>
+
         <div class="carousel hidden">
             <div><img id="cPic" src="https://i.imgur.com/Es01tJd.png" alt=""></div>
             <div class="carousel_nav">
@@ -20,12 +50,17 @@
                     < </button>
                         <button id="closeCarousel">X</button>
                         <button id="right"> > </button>
-
             </div>
         </div>
         <div id="messageBackgroundHidden">
             <p id="winMessage">the player wins the game!</p>
-            <button id="messageButton">Next Round</button>
+            <input type="text" id="enterName" placeholder="Enter Your Name">
+            <div id="buttonGroup">
+                <button id="messageButton">New Game</button>
+                <button id="begin">Begin</button>
+                <button id="shop">Shop</button>
+                <button id="payDebt">Pay Debt</button>
+            </div>
         </div>
 
         <div id="gamingTable">
@@ -80,7 +115,10 @@
             <button id="standButton">Stand</button>
             <button id="endTurnButton">End Turn</button>
             <button id="newGame">New Game</button>
-            <span id="opponentName">Opponent</span>
+            <div id="opponentNameBox">
+                <p id="opponentName">Opponent</p>
+            </div>
+
             <p id="playerScore">0</p>
             <p id="opponentScore">0</p>
             <button id="tutorial">How to Play</button>

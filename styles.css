@@ -116,8 +116,15 @@ p {
 #opponentName {
     color: white;
     position: fixed;
+}
+#opponentNameBox{
+    width: 200px;
+    height: 20px;
+    position: absolute;
+    left: 640px;
     top: 148px;
-    left: 780px;
+    display: flex;
+   justify-content: right;
 }
 #play1Button {
     border-top: solid;
@@ -562,9 +569,26 @@ display: none;
 }
 #winMessage{
     color: white;
-    padding-top: 40px;
     text-align: center;
     font-size: 1.3em;
+}
+p, span {
+    color: white;
+    text-align: left;
+}
+#money{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color:rgba(0, 0, 0, 0.8);
+    border-radius: 15%;
+    border: solid 5px rgba(112, 112, 113, 0.9);
+    width: 150px;
+    height: 80px;
+    left: 25px;
+    top: 335px;
+    align-items: center;
+    justify-content: center;
 }
 #messageButton {
     border-top: solid;
@@ -576,14 +600,81 @@ display: none;
     background: none;
     border-radius: 50px;
     transition: all 0.5s;
-    position: absolute;
-    margin-top: 30px;
-    margin-left: 235px;
  text-align: center;
+ width: 100%;
+ cursor: pointer;
 }
 #messageButton:hover {
     border-color: green;
     color: white;
+}
+#begin{
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center;
+    width: 30%;
+    cursor: pointer;
+}
+#begin:hover{
+    border-color: green;
+    color: white; 
+}
+#payDebt {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center;
+    width: 30%;
+    cursor: pointer;
+}
+#payDebt:hover {
+    border-color: green;
+    color: white;    
+}
+#payDebt:disabled{
+    color:grey;
+    border-color: grey;
+}
+#shop:hover {
+    border-color: green;
+    color: white;  
+}
+#buttonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-around;
+}
+#shop {
+    cursor: pointer;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: #264653;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center;
+    width: 30%;
+}
+#shop:hover {
+    border-color: green;
+    color: white;  
 }
 #playerStandDisplay{
     background-color: rgb(48, 55, 66,.5);
@@ -609,8 +700,142 @@ display: none;
 #computerStandHidden{
     display: none;
 }
+#bonus1 {
+    color: yellow;
+}
+#bonus2 {
+    color: white;
+}
+#bonus3 {
+    color: white;
+    font-size: 1.5em;
+}
+#shopName{
+    display: flex;
+    flex-direction: row;
+}
+#closeShop{
+    cursor: pointer;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: red;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center; 
+    width: 30%;  
+}
+#closeShop:hover{
+    border-color: green;
+    color: white; 
+}
+#buy1{
+    cursor: pointer;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: white;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center; 
+    width: 150%;  
+}
+#buy1:hover{
+    border-color: green;
+    color: white; 
+}
+#buy1.disabled{
+    color:grey;
+    border-color: grey;
+}
+#buy2{
+    cursor: pointer;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: white;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center;  
+    width: 150%; 
+}
+#buy2:hover{
+    border-color: green;
+    color: white; 
+}
+#buy2.disabled{
+    color:grey;
+    border-color: grey;
+}
+#buy3{
+    cursor: pointer;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: white;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center; 
+    width: 150%; 
+}
+#buy3:hover{
+    border-color: green;
+    color: white; 
+}
+#buy3.disabled{
+    color:grey;
+    border-color: grey;
+}
+h1{
+    color: white;
+}
+#shopButtons{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    justify-content: space-around;
+}
+#itemsAndButtonsDiv{
+    display:flex;
+    flex-direction: row;
+}
+#shopItems{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#shopDiv{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color:rgba(0, 0, 0, 0.9);
+    border-radius: 15%;
+    border: solid 5px rgba(188, 188, 0, 0.9);
+    width: 650px;
+    height: 350px;
+    left: 245px;
+    top: 200px;
+    z-index: 1;
+    align-items: center;
+}
 #messageBackgroundDisplayed {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     background-color:rgba(19, 28, 123, 0.8);
     border-radius: 15%;
     border: solid 5px rgba(112, 112, 113, 0.9);
@@ -619,6 +844,7 @@ display: none;
     left: 293px;
     top: 235px;
     z-index: 1;
+    align-items: center;
     }
 #creditPage {
     position: fixed;
@@ -741,4 +967,9 @@ display: none;
 
 .hidden {
     display: none;
+}
+
+#enterName{
+    width: 25%;
+    text-align: center;
 }

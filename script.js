@@ -4,8 +4,6 @@ let player = {
     stand: false,
     name: "Player",
     value: 0,
-    faceCard: '',
-    reversable: false,
     score: 0,
     credits: 1500,
     debt: 0,
@@ -127,12 +125,6 @@ const toggleCWin = () => {
 }
 
 const newGame = () => { // clears the board of victory lights and reset to player going first
-    if (player.bonus1) {
-        playerName.style.color = "yellow"
-    }
-    if (player.bonus3) {
-        playerName.textContent += " 👑"
-    }
     newGameButton.disabled = false
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
@@ -844,7 +836,7 @@ const computerChoice = () => {
 }
 
 //******** PsuedoCode for the computer AI **********
-// 1-Has the player stood?
+// 1-Has the NOT player stood?
 // 	2-Is computer score < Player score and under 20?
 // 		3-Would playing a card help?
 // 			4-Play a card and stand
@@ -852,7 +844,7 @@ const computerChoice = () => {
 // 		3-Stand and win
 // 	2-Is computer score === Player score?
 // 		3-Stand and tie
-// 1-Has the player not stood?
+// 1-Has the player stood?
 // 	2-Is the computer’s score < 20?
 // 		3-Will playing a card get the computer to 18/19/20?
 // 			4-Play a card and stand
@@ -879,9 +871,6 @@ const computerDecide = () => {
             console.log('computer score is less than player score and under 20')
             console.log('computer will try and play a card')
             computerPlayCard()
-            // setTimeout(() => {
-            //     console.log('computer has stopped considering')
-            // }, 1500)
             if (computer.score < player.score && computer.score < 17) {
                 console.log('Computer could not find a card and will end its turn')
                 setTimeout(() => {
@@ -904,7 +893,6 @@ const computerDecide = () => {
             console.log('computer score is greater than player score and under 20')
             console.log('computer will try and play a card')
             computerPlayCard()
-            // setTimeout(() => {
             if (computer.score > player.score && computer.score < 17) {
                 console.log('Computer could not find a card and will end its turn')
                 setTimeout(() => {
@@ -915,18 +903,12 @@ const computerDecide = () => {
                 setTimeout(() => {
                     endComputerTurn()
                 }, 800)
-                // setTimeout(() => {
-                //     console.log('computer finishes considering')
-                // }, 800)
             } else if (computer.score === 17 || computer.score === 18 || computer.score === 19) {
                 setTimeout(() => {
                     console.log('Computer score too high to risk more. Computer will stand')
                     computerStand()
                 }, 800)
                 console.log('Computer has stood = ', computer.stand)
-                // setTimeout(() => {
-                //     console.log('computer finishes considering')
-                // }, 800)
             } else if (computer.score === 20) {
                 computerStand()
             } else if (computer.score > 20) {
@@ -936,7 +918,6 @@ const computerDecide = () => {
                 checkScore()
                 console.log('sending checkscore request.')
             }
-            // }, 1500)
         } else if (computer.score === player.score && computer.score <= 20) {
             console.log('computer sees a tie and that its score is less than 20')
             console.log('computer will try and play a card')
@@ -950,9 +931,6 @@ const computerDecide = () => {
                     computer.stand = true
                     document.getElementById('computerStandHidden').id = 'computerStandDisplay';
                 }, 800)
-                // setTimeout(() => {
-                //     console.log('computer finishes considering')
-                // }, 800)
             } else if (computer.score < 20) {
                 setTimeout(() => {
                     endComputerTurn()
@@ -976,7 +954,7 @@ const computerDecide = () => {
                 checkScore()
                 console.log('sending checkscore request.')
                 return false
-                //use return false to force code to end or else player standing will trigger the player standing if situations
+                //use return false to force code to end or else computer standing will trigger the player standing if situations
             } else {
                 setTimeout(() => {
                     endComputerTurn()
@@ -1031,7 +1009,7 @@ const computerDecide = () => {
             if (computer.score < player.score && computer.score < 20) {
                 console.log('Computer could not find a card and will end its turn')
                 endComputerTurn()
-                dealRandomComputerCard() // < ???
+                dealRandomComputerCard()
             } else if (computer.score === player.score) {
                 console.log('computer has played a card and is tied with the player, the computer chooses to stand.')
                 computerStand()
@@ -1433,8 +1411,10 @@ const closeShop = () => {
     shopDiv.style.display = "none"
 }
 const payDebt = () => {
+    //Do not allow player to empty their credits to pay debt
     if (playerInput.value >= player.credits) {
         alert("You can't empty your account. Pay another amount.")
+        //Do not allow player to pay more than they owe
     } else if (playerInput.value > player.debt) {
         alert("Don't pay more than what you owe!")
     } else {
@@ -1452,6 +1432,7 @@ const wager = () => {
     if (document.getElementById('messageBackgroundHidden')) {
         document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
     }
+    //give the player credits/debt if their amount is 0
     if (player.credits === 0) {
         player.credits += 1500
         player.debt += 1500
@@ -1470,7 +1451,8 @@ const wager = () => {
     playerInput.placeholder = "Enter Amount"
     document.getElementById('winMessage').innerHTML = 'Enter Wager or Pay Debt:'
     begin.innerHTML = 'New Game'
-    begin.onclick = inside
+    //for some reason having an event listener for line 1455 duplicates its code every round so I'm using .onclick instead
+    begin.onclick = wagerCredits
     shopButton.style.display = "block"
     payDebtButton.style.display = "block"
 
@@ -1486,6 +1468,7 @@ const buy1 = () => {
         player.bonus1 = true
         playerCredits.textContent = player.credits
         buy1Button.disabled = true
+        playerName.style.color = "yellow"
     }
 }
 const buy2 = () => {
@@ -1510,6 +1493,8 @@ const buy3 = () => {
         player.bonus3 = true
         playerCredits.textContent = player.credits
         buy3Button.disabled = true
+        playerName.textContent += " 👑"
+        player.bonus3 = false
     }
 }
 const carouselDiv = document.querySelector('.carousel')
@@ -1570,16 +1555,15 @@ const startUp = () => {
     enterButton.onclick = setNames
 }
 
-const inside = () => {
+//Creating a function to prevent the following code from duplicating every round
+const wagerCredits = () => {
     if (isNaN(playerInput.value)) {
         alert("Not a number! Please input a number.")
-        console.log("how many times am i stated?")
     } else {
         if (playerInput.value > player.credits) {
             alert("Not enough credits! Please enter again.")
             console.log("how many times am i stated?")
         } else {
-            console.log("how many times am i stated?")
             player.wager = playerInput.value
             player.credits -= player.wager
             playerInput.classList.add("hidden")

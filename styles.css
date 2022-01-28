@@ -8,7 +8,6 @@ html {
 }
 #innerWrapper{
     margin: 0;
-
 }
 #gamingTable {
     position: fixed;
@@ -116,6 +115,7 @@ p {
 #opponentName {
     color: white;
     position: fixed;
+    text-align: left;
 }
 #opponentNameBox{
     width: 200px;
@@ -125,6 +125,7 @@ p {
     top: 148px;
     display: flex;
    justify-content: right;
+   align-items: right;
 }
 #play1Button {
     border-top: solid;
@@ -799,6 +800,7 @@ p, span {
     border-color: grey;
 }
 h1{
+    text-decoration: underline;
     color: white;
 }
 #shopButtons{
@@ -845,6 +847,10 @@ h1{
     top: 235px;
     z-index: 1;
     align-items: center;
+    }
+    a{
+        color:white;
+        margin-left: 10px;
     }
 #creditPage {
     position: fixed;

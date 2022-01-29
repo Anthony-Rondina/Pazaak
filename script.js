@@ -1495,7 +1495,7 @@ const checkScore = () => {
                     document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
                     document.getElementById('messageButton').innerHTML = 'Next Round'
                     document.getElementById('messageButton').onclick = clearRound;
-                } else if (player.score > computer.score && player.score > 20) {
+                } else if (player.score > computer.score && player.score <= 20) {
                     console.log("Player wins with the higher score!", computer.score, player.score)
                     togglePWin()
                     if (player.victory === 3) {
@@ -1516,6 +1516,54 @@ const checkScore = () => {
                     }
                     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                     document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
+                    document.getElementById('messageButton').innerHTML = 'Next Round'
+                    document.getElementById('messageButton').onclick = clearRound;
+                } else if (player.score > computer.score && player.score > 20) {
+                    toggleCWin()
+                    if (computer.victory === 3) {
+                        computerWinGame.play()
+                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                        document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
+                        document.getElementById('messageButton').innerHTML = 'New Game'
+                        document.getElementById('messageButton').onclick = wager;
+                    } else {
+                        computerWinRound.play()
+                    }
+                    console.log('Computer wins by player going over!', computer.score, player.score)
+                    console.log(player.score, computer.score)
+                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                    document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
+                    document.getElementById('messageButton').innerHTML = 'Next Round'
+                    document.getElementById('messageButton').onclick = clearRound;
+                } else if (computer.score > player.score && computer.score > 20) {
+                    togglePWin()
+                    if (player.victory === 3) {
+                        if (player.bonus2) {
+                            player.credits += player.wager * 5
+                        } else {
+                            player.credits += player.wager * 2
+                        }
+                        player.wager = 0
+                        playerCredits.textContent = player.credits
+                        playerWinGame.play()
+                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                        document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
+                        document.getElementById('messageButton').innerHTML = 'New Game'
+                        document.getElementById('messageButton').onclick = wager;
+                    } else {
+                        playerWinRound.play()
+                    }
+                    console.log('Player wins by computer going over!', computer.score, player.score)
+                    console.log(player.score, computer.score)
+                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                    document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
+                    document.getElementById('messageButton').innerHTML = 'Next Round'
+                    document.getElementById('messageButton').onclick = clearRound;
+                } else if (player.score === computer.score) {
+                    tieSound.play()
+                    console.log('Its a tie!', computer.score, player.score)
+                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                    document.getElementById('winMessage').innerHTML = "The Round is a Tie!"
                     document.getElementById('messageButton').innerHTML = 'Next Round'
                     document.getElementById('messageButton').onclick = clearRound;
                 }

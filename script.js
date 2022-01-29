@@ -5,7 +5,7 @@ let player = {
     name: "Player",
     value: 0,
     score: 0,
-    credits: 111500,
+    credits: 1500,
     debt: 0,
     wager: 0,
     bonus1: false,

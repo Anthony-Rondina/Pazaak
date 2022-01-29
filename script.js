@@ -147,6 +147,10 @@ const toggleCWin = () => {
 }
 
 const newGame = () => { // clears the board of victory lights and reset to player going first
+    reverseButton1.disabled = true;
+    reverseButton2.disabled = true;
+    reverseButton3.disabled = true;
+    reverseButton4.disabled = true;
     newGameButton.disabled = false
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
@@ -193,6 +197,10 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     })
 }
 const clearRound = () => { // clears the board of victory lights and reset to player going first
+    reverseButton1.disabled = true;
+    reverseButton2.disabled = true;
+    reverseButton3.disabled = true;
+    reverseButton4.disabled = true;
     playerStandSound.play()
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
@@ -661,6 +669,7 @@ const useCard = (e) => {
             document.getElementById('playerScore').innerText = player.score;
             console.log(player.score)
             play1Button.disabled = true
+            reverseButton1.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
             document.getElementById('playerCard0').src = 'https://i.imgur.com/Jt3MdsW.png'
@@ -688,6 +697,7 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
+
             break;
         case 'play2Button':
             playCardSound.play()
@@ -695,6 +705,7 @@ const useCard = (e) => {
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
             play2Button.disabled = true
+            reverseButton2.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
 
@@ -723,6 +734,7 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
+
             break;
         case 'play3Button':
             playCardSound.play()
@@ -730,6 +742,7 @@ const useCard = (e) => {
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
             play3Button.disabled = true
+            reverseButton3.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
 
@@ -758,6 +771,7 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
+
             break;
         case 'play4Button':
             playCardSound.play()
@@ -765,6 +779,7 @@ const useCard = (e) => {
             console.log(player.score)
             document.getElementById('playerScore').innerText = player.score;
             play4Button.disabled = true
+            reverseButton4.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
 
@@ -793,6 +808,7 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
+
     }
 }
 

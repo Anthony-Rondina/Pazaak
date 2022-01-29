@@ -1033,7 +1033,7 @@ h1{
     height: 550px;
     left: 200px;
     top: 125px;
-    z-index: 1;
+    z-index: 4;
     justify-content: center;
     align-items: center;
 }
@@ -1064,4 +1064,44 @@ h1{
 #enterName{
     width: 25%;
     text-align: center;
+}
+.statusMessage {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color:rgba(1, 147, 21, 1);
+    border-radius: 15%;
+    border: solid 5px rgba(255, 255, 255, 0.877);
+    width: 550px;
+    height: 150px;
+    left: 293px;
+    top: 235px;
+    z-index: 6;
+    align-items: center;
+}
+h3 {
+    color: white;
+}
+.statusMessageH2 {
+    text-align: center;
+    text-shadow: 2px 2px #000000;
+}
+.closeStatus{
+    cursor: pointer;
+    border-top: solid;
+    border-bottom: solid;
+    border-left: none;
+    border-right: none;
+    border-color: white;
+    color: white;
+    background: none;
+    border-radius: 50px;
+    transition: all 0.5s;
+    text-align: center; 
+    width: 20%;  
+}
+.closeStatus:hover{
+    border-color: black;
+    color: white;
 }

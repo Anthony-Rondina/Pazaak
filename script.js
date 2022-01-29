@@ -5,8 +5,8 @@ let player = {
     name: "Player",
     value: 0,
     score: 0,
-    credits: 1500,
-    debt: 0,
+    credits: 111500,
+    debt: 1,
     wager: 0,
     bonus1: false,
     bonus2: false,
@@ -27,6 +27,8 @@ let computer = {
     value: 0,
     score: 0
 }
+const alertModal = document.querySelector(".statusMessage")
+alertModal.style.display = "none"
 const reverseButton1 = document.querySelector(".reverse0")
 const reverseButton2 = document.querySelector(".reverse1")
 const reverseButton3 = document.querySelector(".reverse2")
@@ -35,6 +37,7 @@ reverseButton1.disabled = true;
 reverseButton2.disabled = true;
 reverseButton3.disabled = true;
 reverseButton4.disabled = true;
+const closeStatusModalButton = document.querySelector(".closeStatus")
 let buy1Button = document.getElementById("buy1")
 let buy2Button = document.getElementById("buy2")
 let buy3Button = document.getElementById("buy3")
@@ -1688,8 +1691,8 @@ const subPic = () => {
     console.log(carouselCounter)
     switch (carouselCounter) {
         case -1:
-            carouselCounter = 2
-            carouselPic.src = "https://i.imgur.com/tAMXHIm.png"
+            carouselCounter = 3
+            carouselPic.src = "https://i.imgur.com/jBnmeKq.png"
             console.log('pick-1')
             break;
         case 0:
@@ -1704,13 +1707,17 @@ const subPic = () => {
             carouselPic.src = "https://i.imgur.com/tAMXHIm.png"
             console.log('pick2')
             break;
+        case 3:
+            carouselPic.src = "https://i.imgur.com/jBnmeKq.png"
+            console.log('pick3')
+            break;
     }
 }
 const addPic = () => {
     carouselCounter++
     console.log(carouselCounter)
     switch (carouselCounter) {
-        case 3:
+        case 4:
             carouselCounter = 0
             carouselPic.src = "https://i.imgur.com/Es01tJd.png"
             console.log('pick-1')
@@ -1726,6 +1733,10 @@ const addPic = () => {
         case 2:
             carouselPic.src = "https://i.imgur.com/tAMXHIm.png"
             console.log('pick2')
+            break;
+        case 3:
+            carouselPic.src = "https://i.imgur.com/jBnmeKq.png"
+            console.log('pick3')
             break;
     }
 }
@@ -1755,11 +1766,15 @@ const payDebt = () => {
     //Do not allow player to empty their credits to pay debt
     if (playerInput.value >= player.credits) {
         bust.play()
-        alert("You can't empty your account. Pay another amount.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You can't empty your account. Pay another amount."
         //Do not allow player to pay more than they owe
     } else if (playerInput.value > player.debt) {
         bust.play()
-        alert("Don't pay more than what you owe!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Don't pay more than what you owe!"
     } else {
         player.credits -= playerInput.value
         player.debt -= playerInput.value
@@ -1768,6 +1783,9 @@ const payDebt = () => {
 
         if (player.debt === 0) {
             playerWinRound.play()
+            alertModal.style.display = "flex"
+            alertModal.style.backgroundColor = "darkgreen"
+            alertMessage.innerText = "Debt paid in full!"
             //possible add win round sound and paid off message here
             payDebtButton.disabled = true
         } else {
@@ -1808,16 +1826,24 @@ const wager = () => {
 
 }
 
+alertMessage = document.querySelector(".statusMessageH2")
 const buy1 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
-    } else if (player.credits <= 500) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
+    } else if (player.credits <= 1500) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
-    } else if (player.credits > 500) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
+    } else if (player.credits > 1500) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
-        player.credits -= 500
+        player.credits -= 1500
         player.bonus1 = true
         playerCredits.textContent = player.credits
         buy1Button.disabled = true
@@ -1827,11 +1853,18 @@ const buy1 = () => {
 const buy2 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 5000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 5000) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
         player.credits -= 5000
         player.bonus2 = true
@@ -1842,11 +1875,18 @@ const buy2 = () => {
 const buy3 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 20000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 20000) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
         player.credits -= 20000
         player.bonus3 = true
@@ -1859,11 +1899,18 @@ const buy3 = () => {
 const buy4 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 3000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 3000) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
         player.credits -= 3000
         player.bonus4 = true
@@ -1874,11 +1921,18 @@ const buy4 = () => {
 const buy5 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 3000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 3000) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
         player.credits -= 3000
         player.bonus5 = true
@@ -1889,11 +1943,18 @@ const buy5 = () => {
 const buy6 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 3000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 3000) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
         player.credits -= 3000
         player.bonus6 = true
@@ -1904,11 +1965,18 @@ const buy6 = () => {
 const buy7 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 3000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 3000) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
         player.credits -= 3000
         player.bonus7 = true
@@ -1919,11 +1987,18 @@ const buy7 = () => {
 const buy8 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 3000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 3000) {
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         tieSound.play()
         player.credits -= 3000
         player.bonus8 = true
@@ -1934,17 +2009,29 @@ const buy8 = () => {
 const buy9 = () => {
     if (player.debt > 0) {
         bust.play()
-        alert("You must pay your debts before you can buy from the Shop!")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "You must pay your debts before you can buy from the Shop!"
     } else if (player.credits <= 3000) {
         bust.play()
-        alert("Not enough Credits! You must have some credits left to wager.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not enough Credits! You must have some credits left to wager."
     } else if (player.credits > 3000) {
         tieSound.play()
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkgreen"
+        alertMessage.innerText = "Bonus Purchased!"
         player.credits -= 3000
         player.bonus9 = true
         playerCredits.textContent = player.credits
         buy9Button.disabled = true
     }
+}
+
+const closeStatusModal = () => {
+    playerStandSound.play()
+    alertModal.style.display = "none"
 }
 const carouselDiv = document.querySelector('.carousel')
 const carouselPic = document.getElementById("cPic")
@@ -1962,10 +2049,12 @@ endTurnButton.addEventListener('click', (evt) => {
     playerStandSound.play()
 })
 
+
 reverseButton1.onclick = flipCard
 reverseButton2.onclick = flipCard
 reverseButton3.onclick = flipCard
 reverseButton4.onclick = flipCard
+closeStatusModalButton.onclick = closeStatusModal
 buy1Button.onclick = buy1
 buy2Button.onclick = buy2
 buy3Button.onclick = buy3
@@ -2018,11 +2107,15 @@ const startUp = () => {
 const wagerCredits = () => {
     if (isNaN(playerInput.value)) {
         bust.play()
-        alert("Not a number! Please input a number.")
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Not a number! Please input a number."
     } else {
         if (playerInput.value > player.credits) {
             bust.play()
-            alert("Not enough credits! Please enter again.")
+            alertModal.style.display = "flex"
+            alertModal.style.backgroundColor = "darkred"
+            alertMessage.innerText = "Not enough credits! Please enter again."
         } else {
             playerStandSound.play()
             player.wager = playerInput.value

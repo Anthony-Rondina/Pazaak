@@ -5,7 +5,7 @@ let player = {
     name: "Player",
     value: 0,
     score: 0,
-    credits: 1500,
+    credits: 111500,
     debt: 0,
     wager: 0,
     bonus1: false,
@@ -948,6 +948,7 @@ const dealRandomPlayerCard = () => {
             } else {
                 bust.play()
             }
+            console.log("array is", playerRandomCardArray[3].played)
             if (playerRandomCardArray[8].played) {
                 if (document.getElementById('computerStandHidden')) {
                     document.getElementById('computerStandHidden').id = 'computerStandDisplay';
@@ -1477,97 +1478,7 @@ const checkScore = () => {
     console.log("running checkscore")
     setTimeout(() => {
         if (player.stand && computer.stand) {
-            //Starting with rarest victory condition first
-            if (computerRandomCardArray[8].played || playerRandomCardArray[8].played) {
-                if (computer.score > player.score && computer.score <= 20) {
-                    console.log("Computer Wins with the higher score!", computer.score, player.score)
-                    toggleCWin()
-                    if (computer.victory === 3) {
-                        computerWinGame.play()
-                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                        document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
-                        document.getElementById('messageButton').innerHTML = 'New Game'
-                        document.getElementById('messageButton').onclick = wager;
-                    } else {
-                        computerWinRound.play()
-                    }
-                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                    document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
-                    document.getElementById('messageButton').innerHTML = 'Next Round'
-                    document.getElementById('messageButton').onclick = clearRound;
-                } else if (player.score > computer.score && player.score <= 20) {
-                    console.log("Player wins with the higher score!", computer.score, player.score)
-                    togglePWin()
-                    if (player.victory === 3) {
-                        if (player.bonus2) {
-                            player.credits += player.wager * 5
-                        } else {
-                            player.credits += player.wager * 2
-                        }
-                        player.wager = 0
-                        playerCredits.textContent = player.credits
-                        playerWinGame.play()
-                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                        document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
-                        document.getElementById('messageButton').innerHTML = 'New Game'
-                        document.getElementById('messageButton').onclick = wager;
-                    } else {
-                        playerWinRound.play()
-                    }
-                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                    document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
-                    document.getElementById('messageButton').innerHTML = 'Next Round'
-                    document.getElementById('messageButton').onclick = clearRound;
-                } else if (player.score > computer.score && player.score > 20) {
-                    toggleCWin()
-                    if (computer.victory === 3) {
-                        computerWinGame.play()
-                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                        document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
-                        document.getElementById('messageButton').innerHTML = 'New Game'
-                        document.getElementById('messageButton').onclick = wager;
-                    } else {
-                        computerWinRound.play()
-                    }
-                    console.log('Computer wins by player going over!', computer.score, player.score)
-                    console.log(player.score, computer.score)
-                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                    document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
-                    document.getElementById('messageButton').innerHTML = 'Next Round'
-                    document.getElementById('messageButton').onclick = clearRound;
-                } else if (computer.score > player.score && computer.score > 20) {
-                    togglePWin()
-                    if (player.victory === 3) {
-                        if (player.bonus2) {
-                            player.credits += player.wager * 5
-                        } else {
-                            player.credits += player.wager * 2
-                        }
-                        player.wager = 0
-                        playerCredits.textContent = player.credits
-                        playerWinGame.play()
-                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                        document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
-                        document.getElementById('messageButton').innerHTML = 'New Game'
-                        document.getElementById('messageButton').onclick = wager;
-                    } else {
-                        playerWinRound.play()
-                    }
-                    console.log('Player wins by computer going over!', computer.score, player.score)
-                    console.log(player.score, computer.score)
-                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                    document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
-                    document.getElementById('messageButton').innerHTML = 'Next Round'
-                    document.getElementById('messageButton').onclick = clearRound;
-                } else if (player.score === computer.score) {
-                    tieSound.play()
-                    console.log('Its a tie!', computer.score, player.score)
-                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
-                    document.getElementById('winMessage').innerHTML = "The Round is a Tie!"
-                    document.getElementById('messageButton').innerHTML = 'Next Round'
-                    document.getElementById('messageButton').onclick = clearRound;
-                }
-            } else if (computer.score > player.score && computer.score <= 20) {
+            if (computer.score > player.score && computer.score <= 20) {
                 console.log("Computer Wins with the higher score!", computer.score, player.score)
                 toggleCWin()
                 if (computer.victory === 3) {

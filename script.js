@@ -11,12 +11,12 @@ let player = {
     bonus1: false,
     bonus2: false,
     bonus3: false,
-    bonus4: true,
-    bonus5: true,
-    bonus6: true,
-    bonus7: true,
-    bonus8: true,
-    bonus9: true,
+    bonus4: false,
+    bonus5: false,
+    bonus6: false,
+    bonus7: false,
+    bonus8: false,
+    bonus9: false,
 
 }
 //initate an object for the computer

@@ -5,12 +5,19 @@ let player = {
     name: "Player",
     value: 0,
     score: 0,
-    credits: 1500,
-    debt: 0,
+    credits: 111500,
+    debt: 1,
     wager: 0,
     bonus1: false,
     bonus2: false,
-    bonus3: false
+    bonus3: false,
+    bonus4: true,
+    bonus5: true,
+    bonus6: true,
+    bonus7: true,
+    bonus8: true,
+    bonus9: true,
+
 }
 //initate an object for the computer
 let computer = {
@@ -20,9 +27,23 @@ let computer = {
     value: 0,
     score: 0
 }
+const reverseButton1 = document.querySelector(".reverse0")
+const reverseButton2 = document.querySelector(".reverse1")
+const reverseButton3 = document.querySelector(".reverse2")
+const reverseButton4 = document.querySelector(".reverse3")
+reverseButton1.disabled = true;
+reverseButton2.disabled = true;
+reverseButton3.disabled = true;
+reverseButton4.disabled = true;
 let buy1Button = document.getElementById("buy1")
 let buy2Button = document.getElementById("buy2")
 let buy3Button = document.getElementById("buy3")
+let buy4Button = document.getElementById("buy4")
+let buy5Button = document.getElementById("buy5")
+let buy6Button = document.getElementById("buy6")
+let buy7Button = document.getElementById("buy7")
+let buy8Button = document.getElementById("buy8")
+let buy9Button = document.getElementById("buy9")
 const closeShopButton = document.getElementById("closeShop")
 const shopDiv = document.getElementById('shopDiv')
 shopDiv.style.display = "none"
@@ -52,6 +73,7 @@ let play1Button = document.getElementById('play1Button')
 let play2Button = document.getElementById('play2Button')
 let play3Button = document.getElementById('play3Button')
 let play4Button = document.getElementById('play4Button')
+
 const toggleTurn = () => { //Toggles both player and computer turn lights, both cannot be on at once.
     if (togglePTurnLight === true) {
         document.getElementById('cTurnButton').src = "https://i.imgur.com/wkVg5Mq.png";
@@ -170,7 +192,7 @@ const newGame = () => { // clears the board of victory lights and reset to playe
         item.played = false
     })
 }
-const clearTable = () => { // clears the board of victory lights and reset to player going first
+const clearRound = () => { // clears the board of victory lights and reset to player going first
     playerStandSound.play()
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
@@ -201,20 +223,78 @@ const clearTable = () => { // clears the board of victory lights and reset to pl
     }
 }
 //Creates an array of all the Playing Card Faces
-const interferenceDeck = [
-    "https://i.imgur.com/gSLqvS8.png",
-    "https://i.imgur.com/LsNCo4C.png",
-    "https://i.imgur.com/O7UL50l.png",
-    "https://i.imgur.com/0hK0i5p.png",
-    "https://i.imgur.com/hZ3Ksx1.png",
-    "https://i.imgur.com/JSGmyiy.png",
-    "https://i.imgur.com/EKMxZrQ.png",
-    "https://i.imgur.com/F7xn4IL.png",
-    "https://i.imgur.com/nsmB3TV.png",
-    "https://i.imgur.com/4EfMMGu.png",
-    "https://i.imgur.com/zSpmKS9.png",
-    "https://i.imgur.com/Ef0x20d.png"
-]
+const interferenceDeck = [{
+    value: 1,
+    faceCard: "https://i.imgur.com/gSLqvS8.png"
+},
+{
+    value: 2,
+    faceCard: "https://i.imgur.com/LsNCo4C.png"
+},
+{
+    value: 3,
+    faceCard: "https://i.imgur.com/O7UL50l.png"
+},
+{
+    value: 4,
+    faceCard: "https://i.imgur.com/0hK0i5p.png"
+},
+{
+    value: 5,
+    faceCard: "https://i.imgur.com/hZ3Ksx1.png"
+},
+{
+    value: 6,
+    faceCard: "https://i.imgur.com/JSGmyiy.png"
+},
+{
+    value: -1,
+    faceCard: "https://i.imgur.com/EKMxZrQ.png"
+},
+{
+    value: -2,
+    faceCard: "https://i.imgur.com/F7xn4IL.png"
+},
+{
+    value: -3,
+    faceCard: "https://i.imgur.com/nsmB3TV.png"
+},
+{
+    value: -4,
+    faceCard: "https://i.imgur.com/4EfMMGu.png"
+},
+{
+    value: -5,
+    faceCard: "https://i.imgur.com/zSpmKS9.png"
+},
+{
+    value: -6,
+    faceCard: "https://i.imgur.com/Ef0x20d.png"
+},
+{
+    value: 1,
+    faceCard: "https://i.imgur.com/Iz6A2tk.png"
+},
+{
+    value: 2,
+    faceCard: "https://i.imgur.com/fsaQPxR.png"
+},
+{
+    value: 3,
+    faceCard: "https://i.imgur.com/1QnEZv3.png"
+},
+{
+    value: 4,
+    faceCard: "https://i.imgur.com/H1mLMl6.png"
+},
+{
+    value: 5,
+    faceCard: "https://i.imgur.com/c3Jesea.png"
+},
+{
+    value: 6,
+    faceCard: "https://i.imgur.com/0sRZ1a6.png"
+}]
 // This array holds the value for the 4 player card's name, value, cardface and reversable status
 const playerCards = [{
     name: "playerCard0",
@@ -279,67 +359,67 @@ const dealComputerCards = () => {
         switch (index) {
             case 0:
                 computerCards[i].value = 1;
-                computerCards[i].faceCard = interferenceDeck[index]
-
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 1:
                 computerCards[i].value = 2;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 2:
                 computerCards[i].value = 3;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 3:
                 computerCards[i].value = 4;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 4:
                 computerCards[i].value = 5;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 5:
                 computerCards[i].value = 6;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 6:
                 computerCards[i].value = -1;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 7:
                 computerCards[i].value = -2;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
 
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 8:
                 computerCards[i].value = -3;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
 
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 9:
                 computerCards[i].value = -4;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 10:
                 computerCards[i].value = -5;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
             case 11:
                 computerCards[i].value = -6;
-                computerCards[i].faceCard = interferenceDeck[index]
+                computerCards[i].faceCard = interferenceDeck[index].faceCard
                 document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/BrguC3y.png"
                 break;
+
         }
     }
 }
@@ -347,69 +427,229 @@ const dealComputerCards = () => {
 const dealPlayerCards = () => { //Assign and deal the players 4 Interferance cards
 
     for (let i = 0; i < 4; i++) {
-        const index = Math.floor(Math.random() * 12);
+        const index = Math.floor(Math.random() * 18);
         switch (index) {
             case 0:
-                playerCards[i].value = 1;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 1:
-                playerCards[i].value = 2;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 2:
-                playerCards[i].value = 3;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 3:
-                playerCards[i].value = 4;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 4:
-                playerCards[i].value = 5;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 5:
-                playerCards[i].value = 6;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 6:
-                playerCards[i].value = -1;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 7:
-                playerCards[i].value = -2;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 8:
-                playerCards[i].value = -3;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 9:
-                playerCards[i].value = -4;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 10:
-                playerCards[i].value = -5;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 break;
             case 11:
-                playerCards[i].value = -6;
-                document.getElementById('playerCard' + [i]).src = interferenceDeck[index];
-                playerCards[i].faceCard = interferenceDeck[index];
+                playerCards[i].value = interferenceDeck[index].value;
+                document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                break;
+            case 12:
+                if (player.bonus4) {
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                    document.querySelector(".reverse" + [i]).disabled = false
+                } else {
+                    const index = Math.floor(Math.random() * 12);
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                }
+                break;
+            case 13:
+                if (player.bonus5) {
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                    document.querySelector(".reverse" + [i]).disabled = false
+                } else {
+                    const index = Math.floor(Math.random() * 12);
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                }
+                break;
+            case 14:
+                if (player.bonus6) {
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                    document.querySelector(".reverse" + [i]).disabled = false
+                } else {
+                    const index = Math.floor(Math.random() * 12);
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                }
+                break;
+            case 15:
+                if (player.bonus7) {
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                    document.querySelector(".reverse" + [i]).disabled = false
+                } else {
+                    const index = Math.floor(Math.random() * 12);
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                }
+                break;
+            case 16:
+                if (player.bonus8) {
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                    document.querySelector(".reverse" + [i]).disabled = false
+                } else {
+                    const index = Math.floor(Math.random() * 12);
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                }
+                break;
+            case 17:
+                if (player.bonus9) {
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                    document.querySelector(".reverse" + [i]).disabled = false
+                } else {
+                    const index = Math.floor(Math.random() * 12);
+                    playerCards[i].value = interferenceDeck[index].value;
+                    document.getElementById('playerCard' + [i]).src = interferenceDeck[index].faceCard;
+                    playerCards[i].faceCard = interferenceDeck[index].faceCard;
+                }
                 break;
         }
+    }
+}
+
+const flipSwitch = (input) => {
+    switch (input.value) {
+        case 1:
+            input.value = -1
+            input.faceCard = "https://i.imgur.com/cFaW2fA.png"
+            break;
+        case 2:
+            input.value = -2
+            input.faceCard = "https://i.imgur.com/keCiBv0.png"
+            break;
+        case 3:
+            input.value = -3
+            input.faceCard = "https://i.imgur.com/UvYsOtn.png"
+            break;
+        case 4:
+            input.value = -4
+            input.faceCard = "https://i.imgur.com/bdUwHF6.png"
+            break;
+        case 5:
+            input.value = -5
+            input.faceCard = "https://i.imgur.com/P08QcfI.png"
+            break;
+        case 6:
+            input.value = -6
+            input.faceCard = "https://i.imgur.com/Y4R574l.png"
+            break;
+        case -1:
+            input.value = 1
+            input.faceCard = "https://i.imgur.com/Iz6A2tk.png"
+            break;
+        case -2:
+            input.value = 2
+            input.faceCard = "https://i.imgur.com/fsaQPxR.png"
+            break;
+        case -3:
+            input.value = 3
+            input.faceCard = "https://i.imgur.com/1QnEZv3.png"
+            break;
+        case -4:
+            input.value = 4
+            input.faceCard = "https://i.imgur.com/H1mLMl6.png"
+            break;
+        case -5:
+            input.value = 5
+            input.faceCard = "https://i.imgur.com/c3Jesea.png"
+            break;
+        case -6:
+            input.value = 6
+            input.faceCard = "https://i.imgur.com/0sRZ1a6.png"
+            break;
+    }
+}
+
+const flipCard = (e) => {
+    switch (e.target.id) {
+        case 'reverse1Button':
+            playerStandSound.play()
+            console.log(playerCards[0].value)
+            flipSwitch(playerCards[0])
+            document.getElementById('playerCard0').src = playerCards[0].faceCard
+            break;
+        case 'reverse2Button':
+            playerStandSound.play()
+            console.log(playerCards[1].value)
+            flipSwitch(playerCards[1])
+            document.getElementById('playerCard1').src = playerCards[1].faceCard
+            break;
+        case 'reverse3Button':
+            playerStandSound.play()
+            console.log(playerCards[2].value)
+            flipSwitch(playerCards[2])
+            document.getElementById('playerCard2').src = playerCards[2].faceCard
+            break;
+        case 'reverse4Button':
+            playerStandSound.play()
+            console.log(playerCards[3].value)
+            flipSwitch(playerCards[3])
+            document.getElementById('playerCard3').src = playerCards[3].faceCard
+            break;
     }
 }
 // This function is used to apply the player card value to their total score
@@ -423,12 +663,10 @@ const useCard = (e) => {
             play1Button.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
-
             document.getElementById('playerCard0').src = 'https://i.imgur.com/Jt3MdsW.png'
             if (player.score === 20) {
                 playerStand()
             }
-            //LEAVING ROOM for functions stand, DealCard and placeCardOnBoard
             //For loop to check played status of all 9 locations to place a card
             for (let i = 0; i < playerRandomCardArray.length; i++) {
                 if (!playerRandomCardArray[i].played) {
@@ -438,6 +676,17 @@ const useCard = (e) => {
                     console.log(playerRandomCardArray[i])
                     return false
                 }
+            }
+            if (playerRandomCardArray[8].played) {
+                if (document.getElementById('computerStandHidden')) {
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                }
+                if (document.getElementById('playerStandHidden')) {
+                    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                }
+                player.stand = true
+                computer.stand = true
+                checkScore()
             }
             break;
         case 'play2Button':
@@ -463,6 +712,17 @@ const useCard = (e) => {
                     return false
                 }
             }
+            if (playerRandomCardArray[8].played) {
+                if (document.getElementById('computerStandHidden')) {
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                }
+                if (document.getElementById('playerStandHidden')) {
+                    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                }
+                player.stand = true
+                computer.stand = true
+                checkScore()
+            }
             break;
         case 'play3Button':
             playCardSound.play()
@@ -486,6 +746,17 @@ const useCard = (e) => {
                     console.log(playerRandomCardArray[i])
                     return false
                 }
+            }
+            if (playerRandomCardArray[8].played) {
+                if (document.getElementById('computerStandHidden')) {
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                }
+                if (document.getElementById('playerStandHidden')) {
+                    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                }
+                player.stand = true
+                computer.stand = true
+                checkScore()
             }
             break;
         case 'play4Button':
@@ -511,7 +782,17 @@ const useCard = (e) => {
                     return false
                 }
             }
-
+            if (playerRandomCardArray[8].played) {
+                if (document.getElementById('computerStandHidden')) {
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                }
+                if (document.getElementById('playerStandHidden')) {
+                    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                }
+                player.stand = true
+                computer.stand = true
+                checkScore()
+            }
     }
 }
 
@@ -655,6 +936,17 @@ const dealRandomPlayerCard = () => {
             } else {
                 bust.play()
             }
+            if (playerRandomCardArray[8].played) {
+                if (document.getElementById('computerStandHidden')) {
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                }
+                if (document.getElementById('playerStandHidden')) {
+                    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                }
+                player.stand = true
+                computer.stand = true
+                checkScore()
+            }
             return false
         }
     }
@@ -732,6 +1024,17 @@ const dealRandomComputerCard = () => {
             document.getElementById('opponentScore').innerText = computer.score;
             if (computer.score > 20) {
                 bust.play()
+            }
+            if (computerRandomCardArray[8].played) {
+                if (document.getElementById('computerStandHidden')) {
+                    document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                }
+                if (document.getElementById('playerStandHidden')) {
+                    document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                }
+                player.stand = true
+                computer.stand = true
+                checkScore()
             }
             return false
         }
@@ -1068,7 +1371,6 @@ const computerPlayCard = () => {
                 computer.stand = true;
                 computerCards[i].value = 0
                 computerCards[i].played = true;
-                //line 1072 may cause breaks
                 document.getElementById('computerStandHidden').id = 'computerStandDisplay';
                 if (player.stand && computer.stand) {
                     checkScore()
@@ -1082,6 +1384,17 @@ const computerPlayCard = () => {
                         document.getElementById('opponentScore').innerText = computer.score; document.getElementById("computerCard" + [i]).src = "https://i.imgur.com/Jt3MdsW.png"
                         return false
                     }
+                }
+                if (computerRandomCardArray[8].played) {
+                    if (document.getElementById('computerStandHidden')) {
+                        document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                    }
+                    if (document.getElementById('playerStandHidden')) {
+                        document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                    }
+                    player.stand = true
+                    computer.stand = true
+                    checkScore()
                 }
             }
         }
@@ -1119,6 +1432,17 @@ const computerPlayCardStand = () => {
                         return false
                     }
                 }
+                if (computerRandomCardArray[8].played) {
+                    if (document.getElementById('computerStandHidden')) {
+                        document.getElementById('computerStandHidden').id = 'computerStandDisplay';
+                    }
+                    if (document.getElementById('playerStandHidden')) {
+                        document.getElementById('playerStandHidden').id = 'playerStandDisplay';
+                    }
+                    player.stand = true
+                    computer.stand = true
+                    checkScore()
+                }
             }
         }
     }
@@ -1129,6 +1453,8 @@ let computerWinGame = document.getElementById("computerWinGame")
 let playerWinRound = document.getElementById("playerWinRound")
 let playerWinGame = document.getElementById("playerWinGame")
 let tieSound = document.getElementById('tieSound')
+
+// Fuction to compare the scores and declare a winner
 const checkScore = () => {
     play1Button.disabled = true
     play2Button.disabled = true
@@ -1139,7 +1465,49 @@ const checkScore = () => {
     console.log("running checkscore")
     setTimeout(() => {
         if (player.stand && computer.stand) {
-            if (computer.score > player.score && computer.score <= 20) {
+            //Starting with rarest victory condition first
+            if (computerRandomCardArray[8].played || playerRandomCardArray[8].played) {
+                if (computer.score > player.score && computer.score <= 20) {
+                    console.log("Computer Wins with the higher score!", computer.score, player.score)
+                    toggleCWin()
+                    if (computer.victory === 3) {
+                        computerWinGame.play()
+                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                        document.getElementById('winMessage').innerHTML = 'The Computer wins the Game!'
+                        document.getElementById('messageButton').innerHTML = 'New Game'
+                        document.getElementById('messageButton').onclick = wager;
+                    } else {
+                        computerWinRound.play()
+                    }
+                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                    document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
+                    document.getElementById('messageButton').innerHTML = 'Next Round'
+                    document.getElementById('messageButton').onclick = clearRound;
+                } else if (player.score > computer.score && player.score > 20) {
+                    console.log("Player wins with the higher score!", computer.score, player.score)
+                    togglePWin()
+                    if (player.victory === 3) {
+                        if (player.bonus2) {
+                            player.credits += player.wager * 5
+                        } else {
+                            player.credits += player.wager * 2
+                        }
+                        player.wager = 0
+                        playerCredits.textContent = player.credits
+                        playerWinGame.play()
+                        document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                        document.getElementById('winMessage').innerHTML = 'The Player wins the Game!'
+                        document.getElementById('messageButton').innerHTML = 'New Game'
+                        document.getElementById('messageButton').onclick = wager;
+                    } else {
+                        playerWinRound.play()
+                    }
+                    document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+                    document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
+                    document.getElementById('messageButton').innerHTML = 'Next Round'
+                    document.getElementById('messageButton').onclick = clearRound;
+                }
+            } else if (computer.score > player.score && computer.score <= 20) {
                 console.log("Computer Wins with the higher score!", computer.score, player.score)
                 toggleCWin()
                 if (computer.victory === 3) {
@@ -1154,7 +1522,7 @@ const checkScore = () => {
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
                 document.getElementById('messageButton').innerHTML = 'Next Round'
-                document.getElementById('messageButton').onclick = clearTable;
+                document.getElementById('messageButton').onclick = clearRound;
             } else if (player.score > computer.score && player.score <= 20) {
                 console.log("Player wins with the higher score!", computer.score, player.score)
                 togglePWin()
@@ -1177,7 +1545,7 @@ const checkScore = () => {
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
                 document.getElementById('messageButton').innerHTML = 'Next Round'
-                document.getElementById('messageButton').onclick = clearTable;
+                document.getElementById('messageButton').onclick = clearRound;
             } else if (player.score > computer.score && player.score > 20) {
                 toggleCWin()
                 if (computer.victory === 3) {
@@ -1194,7 +1562,7 @@ const checkScore = () => {
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = 'The Computer wins the round!'
                 document.getElementById('messageButton').innerHTML = 'Next Round'
-                document.getElementById('messageButton').onclick = clearTable;
+                document.getElementById('messageButton').onclick = clearRound;
             } else if (computer.score > player.score && computer.score > 20) {
                 togglePWin()
                 if (player.victory === 3) {
@@ -1218,14 +1586,14 @@ const checkScore = () => {
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = 'The Player wins the round!'
                 document.getElementById('messageButton').innerHTML = 'Next Round'
-                document.getElementById('messageButton').onclick = clearTable;
+                document.getElementById('messageButton').onclick = clearRound;
             } else if (player.score === computer.score) {
                 tieSound.play()
                 console.log('Its a tie!', computer.score, player.score)
                 document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
                 document.getElementById('winMessage').innerHTML = "The Round is a Tie!"
                 document.getElementById('messageButton').innerHTML = 'Next Round'
-                document.getElementById('messageButton').onclick = clearTable;
+                document.getElementById('messageButton').onclick = clearRound;
             }
         }
     }, 1500)
@@ -1403,19 +1771,23 @@ play.addEventListener('click', (evt) => {
     togglePlay()
 })
 const openShop = () => {
+    playerStandSound.play()
     document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
     shopDiv.style.display = "flex"
 }
 const closeShop = () => {
+    playerStandSound.play()
     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
     shopDiv.style.display = "none"
 }
 const payDebt = () => {
     //Do not allow player to empty their credits to pay debt
     if (playerInput.value >= player.credits) {
+        bust.play()
         alert("You can't empty your account. Pay another amount.")
         //Do not allow player to pay more than they owe
     } else if (playerInput.value > player.debt) {
+        bust.play()
         alert("Don't pay more than what you owe!")
     } else {
         player.credits -= playerInput.value
@@ -1424,11 +1796,18 @@ const payDebt = () => {
         playerDebt.innerText = player.debt
 
         if (player.debt === 0) {
+            playerWinRound.play()
+            //possible add win round sound and paid off message here
             payDebtButton.disabled = true
+        } else {
+            playerStandSound.play()
+
         }
+        playerInput.value = ""
     }
 }
 const wager = () => {
+    playerStandSound.play()
     if (document.getElementById('messageBackgroundHidden')) {
         document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
     }
@@ -1460,10 +1839,13 @@ const wager = () => {
 
 const buy1 = () => {
     if (player.debt > 0) {
+        bust.play()
         alert("You must pay your debts before you can buy from the Shop!")
     } else if (player.credits <= 500) {
+        bust.play()
         alert("Not enough Credits! You must have some credits left to wager.")
     } else if (player.credits > 500) {
+        tieSound.play()
         player.credits -= 500
         player.bonus1 = true
         playerCredits.textContent = player.credits
@@ -1473,10 +1855,13 @@ const buy1 = () => {
 }
 const buy2 = () => {
     if (player.debt > 0) {
+        bust.play()
         alert("You must pay your debts before you can buy from the Shop!")
     } else if (player.credits <= 5000) {
+        bust.play()
         alert("Not enough Credits! You must have some credits left to wager.")
     } else if (player.credits > 5000) {
+        tieSound.play()
         player.credits -= 5000
         player.bonus2 = true
         playerCredits.textContent = player.credits
@@ -1485,16 +1870,109 @@ const buy2 = () => {
 }
 const buy3 = () => {
     if (player.debt > 0) {
+        bust.play()
         alert("You must pay your debts before you can buy from the Shop!")
     } else if (player.credits <= 20000) {
+        bust.play()
         alert("Not enough Credits! You must have some credits left to wager.")
     } else if (player.credits > 20000) {
+        tieSound.play()
         player.credits -= 20000
         player.bonus3 = true
         playerCredits.textContent = player.credits
         buy3Button.disabled = true
+        //add crown to player name
         playerName.textContent += " 👑"
-        player.bonus3 = false
+    }
+}
+const buy4 = () => {
+    if (player.debt > 0) {
+        bust.play()
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 3000) {
+        bust.play()
+        alert("Not enough Credits! You must have some credits left to wager.")
+    } else if (player.credits > 3000) {
+        tieSound.play()
+        player.credits -= 3000
+        player.bonus4 = true
+        playerCredits.textContent = player.credits
+        buy4Button.disabled = true
+    }
+}
+const buy5 = () => {
+    if (player.debt > 0) {
+        bust.play()
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 3000) {
+        bust.play()
+        alert("Not enough Credits! You must have some credits left to wager.")
+    } else if (player.credits > 3000) {
+        tieSound.play()
+        player.credits -= 3000
+        player.bonus5 = true
+        playerCredits.textContent = player.credits
+        buy5Button.disabled = true
+    }
+}
+const buy6 = () => {
+    if (player.debt > 0) {
+        bust.play()
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 3000) {
+        bust.play()
+        alert("Not enough Credits! You must have some credits left to wager.")
+    } else if (player.credits > 3000) {
+        tieSound.play()
+        player.credits -= 3000
+        player.bonus6 = true
+        playerCredits.textContent = player.credits
+        buy6Button.disabled = true
+    }
+}
+const buy7 = () => {
+    if (player.debt > 0) {
+        bust.play()
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 3000) {
+        bust.play()
+        alert("Not enough Credits! You must have some credits left to wager.")
+    } else if (player.credits > 3000) {
+        tieSound.play()
+        player.credits -= 3000
+        player.bonus7 = true
+        playerCredits.textContent = player.credits
+        buy7Button.disabled = true
+    }
+}
+const buy8 = () => {
+    if (player.debt > 0) {
+        bust.play()
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 3000) {
+        bust.play()
+        alert("Not enough Credits! You must have some credits left to wager.")
+    } else if (player.credits > 3000) {
+        tieSound.play()
+        player.credits -= 3000
+        player.bonus8 = true
+        playerCredits.textContent = player.credits
+        buy8Button.disabled = true
+    }
+}
+const buy9 = () => {
+    if (player.debt > 0) {
+        bust.play()
+        alert("You must pay your debts before you can buy from the Shop!")
+    } else if (player.credits <= 3000) {
+        bust.play()
+        alert("Not enough Credits! You must have some credits left to wager.")
+    } else if (player.credits > 3000) {
+        tieSound.play()
+        player.credits -= 3000
+        player.bonus9 = true
+        playerCredits.textContent = player.credits
+        buy9Button.disabled = true
     }
 }
 const carouselDiv = document.querySelector('.carousel')
@@ -1513,11 +1991,21 @@ endTurnButton.addEventListener('click', (evt) => {
     playerStandSound.play()
 })
 
+reverseButton1.onclick = flipCard
+reverseButton2.onclick = flipCard
+reverseButton3.onclick = flipCard
+reverseButton4.onclick = flipCard
 buy1Button.onclick = buy1
 buy2Button.onclick = buy2
 buy3Button.onclick = buy3
+buy4Button.onclick = buy4
+buy5Button.onclick = buy5
+buy6Button.onclick = buy6
+buy7Button.onclick = buy7
+buy8Button.onclick = buy8
+buy9Button.onclick = buy9
 document.getElementById('standButton').onclick = playerStand;
-document.getElementById('messageButton').onclick = clearTable;
+document.getElementById('messageButton').onclick = clearRound;
 document.getElementById('tutorial').onclick = modal;
 shopButton.onclick = openShop
 closeShopButton.onclick = closeShop
@@ -1558,12 +2046,14 @@ const startUp = () => {
 //Creating a function to prevent the following code from duplicating every round
 const wagerCredits = () => {
     if (isNaN(playerInput.value)) {
+        bust.play()
         alert("Not a number! Please input a number.")
     } else {
         if (playerInput.value > player.credits) {
+            bust.play()
             alert("Not enough credits! Please enter again.")
-            console.log("how many times am i stated?")
         } else {
+            playerStandSound.play()
             player.wager = playerInput.value
             player.credits -= player.wager
             playerInput.classList.add("hidden")
@@ -1596,7 +2086,7 @@ const computerNames = [
     "Darth Bane",
     "Mara Jade Skywalker",
     "Jar Jar Binks",
-    "Yoda",
+    "Grand Master Yoda",
     "Mace Windu",
     "Jango Fett",
     "Count Dooku",

@@ -197,10 +197,6 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     })
 }
 const clearRound = () => { // clears the board of victory lights and reset to player going first
-    reverseButton1.disabled = true;
-    reverseButton2.disabled = true;
-    reverseButton3.disabled = true;
-    reverseButton4.disabled = true;
     playerStandSound.play()
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';

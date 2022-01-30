@@ -3,7 +3,6 @@ let player = {
     victory: 0,
     stand: false,
     name: "Player",
-    value: 0,
     score: 0,
     credits: 1500,
     debt: 0,
@@ -24,9 +23,10 @@ let computer = {
     victory: 0,
     stand: false,
     name: "Opponent",
-    value: 0,
     score: 0
 }
+
+//Grab Elements from the DOM and Declare other Variables
 const alertModal = document.querySelector(".statusMessage")
 alertModal.style.display = "none"
 const reverseButton1 = document.querySelector(".reverse0")
@@ -77,7 +77,8 @@ let play2Button = document.getElementById('play2Button')
 let play3Button = document.getElementById('play3Button')
 let play4Button = document.getElementById('play4Button')
 
-const toggleTurn = () => { //Toggles both player and computer turn lights, both cannot be on at once.
+//Toggles both player and computer turn lights, both cannot be on at once.
+const toggleTurn = () => {
     if (togglePTurnLight === true) {
         document.getElementById('cTurnButton').src = "https://i.imgur.com/wkVg5Mq.png";
         document.getElementById('pTurnButton').src = "https://i.imgur.com/uXuLRvh.png";
@@ -149,7 +150,8 @@ const toggleCWin = () => {
     }
 }
 
-const newGame = () => { // clears the board of victory lights and reset to player going first
+// Completely clears the board of victory lights and reset to player going first
+const newGame = () => {
     reverseButton1.disabled = true;
     reverseButton2.disabled = true;
     reverseButton3.disabled = true;
@@ -192,14 +194,15 @@ const newGame = () => { // clears the board of victory lights and reset to playe
     endTurnButton.disabled = false;
     if (document.getElementById('messageBackgroundDisplayed')) {
         document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
-
     }
     //reset the played value for the computer cards
     computerCards.forEach((item) => {
         item.played = false
     })
 }
-const clearRound = () => { // clears the board of victory lights and reset to player going first
+
+// clears the board but keeps victory lights and reset to player going first
+const clearRound = () => {
     playerStandSound.play()
     if (document.getElementById('playerStandDisplay')) {
         document.getElementById('playerStandDisplay').id = 'playerStandHidden';
@@ -226,10 +229,9 @@ const clearRound = () => { // clears the board of victory lights and reset to pl
     untogglePlayCards()
     if (document.getElementById('messageBackgroundDisplayed')) {
         document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
-
     }
 }
-//Creates an array of all the Playing Card Faces
+//Creates an array of all the Interference Card Faces and values
 const interferenceDeck = [{
     value: 1,
     faceCard: "https://i.imgur.com/gSLqvS8.png"
@@ -302,6 +304,7 @@ const interferenceDeck = [{
     value: 6,
     faceCard: "https://i.imgur.com/0sRZ1a6.png"
 }]
+
 // This array holds the value for the 4 player card's name, value, cardface and reversable status
 const playerCards = [{
     name: "playerCard0",
@@ -361,6 +364,7 @@ const computerCards = [{
 ]
 //This function randomly assigns the computer's 4 cards and other values
 const dealComputerCards = () => {
+    //loops 4 times for each card the Computer has
     for (let i = 0; i < 4; i++) {
         const index = Math.floor(Math.random() * 12);
         switch (index) {
@@ -431,8 +435,8 @@ const dealComputerCards = () => {
     }
 }
 // This function uses a switch to assign information to the playerCards array
-const dealPlayerCards = () => { //Assign and deal the players 4 Interferance cards
-
+const dealPlayerCards = () => {
+    //loops 4 times for each card the Computer has
     for (let i = 0; i < 4; i++) {
         const index = Math.floor(Math.random() * 18);
         switch (index) {
@@ -509,6 +513,7 @@ const dealPlayerCards = () => { //Assign and deal the players 4 Interferance car
                     playerCards[i].faceCard = interferenceDeck[index].faceCard;
                 }
                 break;
+            //The following Cases only work if bonuses are purchased, if not then it forces a reroll of the first 12 cards
             case 13:
                 if (player.bonus5) {
                     playerCards[i].value = interferenceDeck[index].value;
@@ -578,6 +583,7 @@ const dealPlayerCards = () => { //Assign and deal the players 4 Interferance car
     }
 }
 
+//This Function is used to flip the value of the reversable cards
 const flipSwitch = (input) => {
     switch (input.value) {
         case 1:
@@ -631,6 +637,7 @@ const flipSwitch = (input) => {
     }
 }
 
+//This function determines which reverse button was clicked to start flipping reversable card values
 const flipCard = (e) => {
     switch (e.target.id) {
         case 'reverse1Button':
@@ -696,7 +703,6 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
-
             break;
         case 'play2Button':
             playCardSound.play()
@@ -707,7 +713,6 @@ const useCard = (e) => {
             reverseButton2.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
-
             document.getElementById('playerCard1').src = 'https://i.imgur.com/Jt3MdsW.png'
             if (player.score === 20) {
                 playerStand()
@@ -733,7 +738,6 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
-
             break;
         case 'play3Button':
             playCardSound.play()
@@ -744,7 +748,6 @@ const useCard = (e) => {
             reverseButton3.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
-
             document.getElementById('playerCard2').src = 'https://i.imgur.com/Jt3MdsW.png'
             //LEAVING ROOM for functions stand, DealCard and placeCardOnBoard
             if (player.score === 20) {
@@ -770,7 +773,6 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
-
             break;
         case 'play4Button':
             playCardSound.play()
@@ -781,7 +783,6 @@ const useCard = (e) => {
             reverseButton4.disabled = true
             togglePlayCards()
             console.log('toggles set to ', pCard1Toggle, pCard2Toggle, pCard3Toggle, pCard4Toggle)
-
             document.getElementById('playerCard3').src = 'https://i.imgur.com/Jt3MdsW.png'
             if (player.score === 20) {
                 playerStand()
@@ -807,7 +808,6 @@ const useCard = (e) => {
                 computer.stand = true
                 checkScore()
             }
-
     }
 }
 
@@ -917,6 +917,8 @@ const playerRandomCardArray = [{
     played: false
 }
 ]
+
+//Creates array for main green cards
 const mainCardDeck = [
     "https://i.imgur.com/UBDy2YH.png",
     "https://i.imgur.com/8aszzAi.png",
@@ -1382,7 +1384,6 @@ const computerPlayCard = () => {
                 console.log('computer score is = ', computer.score)
                 console.log('computer plays ', computerCards[i].value, 'making ', computerCards[i].value + computer.score)
                 untogglePlayCards()
-                // toggleTurn()
                 endTurnButton.disabled = false;
                 computer.stand = true;
                 computerCards[i].value = 0
@@ -1433,7 +1434,6 @@ const computerPlayCardStand = () => {
                 if (!player.stand) {
                     toggleTurn()
                 }
-
                 endTurnButton.disabled = false;
                 computer.stand = true;
                 computerCards[i].played = true;
@@ -1463,7 +1463,7 @@ const computerPlayCardStand = () => {
         }
     }
 }
-// creates a function that helps the computer decide to keep playing
+// creates more DOM elements
 let computerWinRound = document.getElementById("computerWinRound")
 let computerWinGame = document.getElementById("computerWinGame")
 let playerWinRound = document.getElementById("playerWinRound")
@@ -1572,6 +1572,7 @@ const checkScore = () => {
         }
     }, 1500)
 }
+
 //Create a function that ends the player's turn and goes to the computer
 const endPlayerTurn = () => {
     play1Button.disabled = true
@@ -1606,6 +1607,7 @@ const endPlayerTurn = () => {
     }
 }
 
+//Function that ends the Computer turn
 const endComputerTurn = () => {
     console.log('computer running endComputerTurn')
     if (player.stand) {
@@ -1617,16 +1619,16 @@ const endComputerTurn = () => {
     } else {
         console.log('player hasnt stood, releasing player.')
         dealRandomPlayerCard()
-
         untogglePlayCards()
         toggleTurn()
         endTurnButton.disabled = false;
-
     }
-
 }
 
+//Creating StandSound DOM element
 let playerStandSound = document.getElementById("standSound")
+
+//Function that ends the players turn for the rest of the round
 const playerStand = () => {
     playerStandSound.play()
     document.getElementById('playerStandHidden').id = 'playerStandDisplay';
@@ -1652,6 +1654,7 @@ const playerStand = () => {
     }, 10)
 }
 
+//Function that ends the computer's turn for the rest of the round
 const computerStand = () => {
     if (document.getElementById('computerStandHidden')) {
         document.getElementById('computerStandHidden').id = 'computerStandDisplay';
@@ -1683,11 +1686,16 @@ const togglePlay = () => {
         audioElement.pause();
     }
 };
+
+//Function that opens the how to play Modal
 const modal = () => {
     playerStandSound.play()
     carouselDiv.classList.remove("hidden")
 }
+//Initiating counter for Carousel
 let carouselCounter = 0
+
+//Function that cycles through Carousel backwards
 const subPic = () => {
     playerStandSound.play()
     carouselCounter--
@@ -1716,6 +1724,7 @@ const subPic = () => {
             break;
     }
 }
+//Function that cycles through Carousel forwards
 const addPic = () => {
     playerStandSound.play()
     carouselCounter++
@@ -1745,6 +1754,7 @@ const addPic = () => {
     }
 }
 
+//function that closes the Carousel
 const closeCarousel = () => {
     playerStandSound.play()
     carouselDiv.classList.add("hidden")
@@ -1757,16 +1767,22 @@ const play = document.querySelector("#cantina")
 play.addEventListener('click', (evt) => {
     togglePlay()
 })
+
+//Function that opens the shop
 const openShop = () => {
     playerStandSound.play()
     document.getElementById('messageBackgroundDisplayed').id = 'messageBackgroundHidden';
     shopDiv.style.display = "flex"
 }
+
+//Function that Closes the shop
 const closeShop = () => {
     playerStandSound.play()
     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
     shopDiv.style.display = "none"
 }
+
+//Function that pays off debt
 const payDebt = () => {
     //Do not allow player to empty their credits to pay debt
     if (playerInput.value >= player.credits) {
@@ -1785,7 +1801,6 @@ const payDebt = () => {
         player.debt -= playerInput.value
         playerCredits.innerText = player.credits
         playerDebt.innerText = player.debt
-
         if (player.debt === 0) {
             playerWinRound.play()
             alertModal.style.display = "flex"
@@ -1795,11 +1810,12 @@ const payDebt = () => {
             payDebtButton.disabled = true
         } else {
             playerStandSound.play()
-
         }
         playerInput.value = ""
     }
 }
+
+//Function that handles the wagering system
 const wager = () => {
     playerStandSound.play()
     if (document.getElementById('messageBackgroundHidden')) {
@@ -1832,10 +1848,12 @@ const wager = () => {
     begin.onclick = wagerCredits
     shopButton.style.display = "block"
     payDebtButton.style.display = "block"
-
 }
 
+//Created DOM element for alert sound effect
 alertMessage = document.querySelector(".statusMessageH2")
+
+//The following functions are used to buy items from the shop
 const buy1 = () => {
     if (player.debt > 0) {
         bust.play()
@@ -2038,10 +2056,13 @@ const buy9 = () => {
     }
 }
 
+//Function that closes the Status Modal
 const closeStatusModal = () => {
     playerStandSound.play()
     alertModal.style.display = "none"
 }
+
+//Declare more DOM elements and create button onclick functions
 const carouselDiv = document.querySelector('.carousel')
 const carouselPic = document.getElementById("cPic")
 const carouselLeft = document.getElementById("left").onclick = subPic
@@ -2057,8 +2078,6 @@ endTurnButton.addEventListener('click', (evt) => {
     endPlayerTurn()
     playerStandSound.play()
 })
-
-
 reverseButton1.onclick = flipCard
 reverseButton2.onclick = flipCard
 reverseButton3.onclick = flipCard
@@ -2086,6 +2105,8 @@ closeShopButton.onclick = closeShop
 // document.getElementById('testDeal').onclick = dealRandomPlayerCard;
 // document.getElementById('testCDeal').onclick = dealRandomComputerCard;
 // document.getElementById('testComputerUseCard').onclick = endComputerTurn;
+
+//Function that randomizes opponent name
 const setNames = () => {
     if (playerInput.value.length) {
         player.name = playerInput.value;
@@ -2141,11 +2162,10 @@ const wagerCredits = () => {
     }
 }
 
-
-
-
+//Runs Startup function to force player to follow prompts
 startUp()
 
+//Array of names for the CPU opponent
 const computerNames = [
     "Luke Skywalker",
     "Boba Fett",

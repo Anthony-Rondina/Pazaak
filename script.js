@@ -1675,6 +1675,7 @@ const computerStand = () => {
 let audioElement = document.getElementById("myAudio");
 let playCardSound = document.getElementById('playCard')
 const togglePlay = () => {
+    playerStandSound.play()
     if (audioElement.paused) {
         audioElement.play();
     }
@@ -1683,10 +1684,12 @@ const togglePlay = () => {
     }
 };
 const modal = () => {
+    playerStandSound.play()
     carouselDiv.classList.remove("hidden")
 }
 let carouselCounter = 0
 const subPic = () => {
+    playerStandSound.play()
     carouselCounter--
     console.log(carouselCounter)
     switch (carouselCounter) {
@@ -1714,6 +1717,7 @@ const subPic = () => {
     }
 }
 const addPic = () => {
+    playerStandSound.play()
     carouselCounter++
     console.log(carouselCounter)
     switch (carouselCounter) {
@@ -1742,6 +1746,7 @@ const addPic = () => {
 }
 
 const closeCarousel = () => {
+    playerStandSound.play()
     carouselDiv.classList.add("hidden")
     carouselCounter = 0
     carouselPic.src = "https://i.imgur.com/Es01tJd.png"

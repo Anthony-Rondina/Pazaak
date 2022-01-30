@@ -1802,6 +1802,10 @@ const wager = () => {
     }
     //give the player credits/debt if their amount is 0
     if (player.credits === 0) {
+        bust.play()
+        alertModal.style.display = "flex"
+        alertModal.style.backgroundColor = "darkred"
+        alertMessage.innerText = "Ran out of credits! 1500 credits and debt issued."
         player.credits += 1500
         player.debt += 1500
     }

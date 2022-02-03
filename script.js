@@ -152,6 +152,8 @@ const toggleCWin = () => {
 
 // Completely clears the board of victory lights and reset to player going first
 const newGame = () => {
+
+    playerInput.style.display = "none"
     reverseButton1.disabled = true;
     reverseButton2.disabled = true;
     reverseButton3.disabled = true;
@@ -1157,7 +1159,7 @@ const computerChoice = () => {
 }
 
 //******** PsuedoCode for the computer AI **********
-// 1-Has the NOT player stood?
+// 1-Has the  player NOT stood?
 // 	2-Is computer score < Player score and under 20?
 // 		3-Would playing a card help?
 // 			4-Play a card and stand
@@ -1817,6 +1819,7 @@ const payDebt = () => {
 
 //Function that handles the wagering system
 const wager = () => {
+    playerInput.style.display = "block"
     playerStandSound.play()
     if (document.getElementById('messageBackgroundHidden')) {
         document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
@@ -2119,7 +2122,7 @@ const setNames = () => {
     wager()
 }
 //startup fuction disables buttons
-const startUp = () => {
+const startUp1 = () => {
     play1Button.disabled = true
     play2Button.disabled = true
     play3Button.disabled = true
@@ -2128,6 +2131,21 @@ const startUp = () => {
     standButton.disabled = true
     newGameButton.disabled = true
     document.getElementById('messageBackgroundHidden').id = 'messageBackgroundDisplayed';
+    document.getElementById('winMessage').innerHTML = 'Best played in Google Chrome then zoom in for desired size.'
+    enterButton.innerHTML = 'Start Playing!'
+    enterButton.onclick = startUp2
+    playerInput.style.display = "none"
+}
+const startUp2 = () => {
+    playerStandSound.play()
+    playerInput.style.display = "block"
+    play1Button.disabled = true
+    play2Button.disabled = true
+    play3Button.disabled = true
+    play4Button.disabled = true
+    endTurnButton.disabled = true;
+    standButton.disabled = true
+    newGameButton.disabled = true
     document.getElementById('winMessage').innerHTML = 'Welcome to Pazaak!'
     enterButton.innerHTML = 'Continue'
     enterButton.onclick = setNames
@@ -2163,7 +2181,7 @@ const wagerCredits = () => {
 }
 
 //Runs Startup function to force player to follow prompts
-startUp()
+startUp1()
 
 //Array of names for the CPU opponent
 const computerNames = [
